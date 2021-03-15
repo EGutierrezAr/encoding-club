@@ -21,8 +21,8 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="./assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="./assetsidx/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="./assetsidx/img/favicon.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
     Now UI Kit by Creative Tim
@@ -32,10 +32,10 @@
   <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
   <!-- CSS Files -->
-  <link href="./assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="./assets/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
+  <link href="./assetsidx/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./assetsidx/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="./assets/demo/demo.css" rel="stylesheet" />
+  <link href="./assetsidx/demo/demo.css" rel="stylesheet" />
 </head>
 
 <body class="index-page sidebar-collapse">
@@ -52,7 +52,7 @@
           <span class="navbar-toggler-bar bottom-bar"></span>
         </button>
       </div>
-      <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
+      <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assetsidx/img/blurred-image-1.jpg">
         <ul class="navbar-nav">
          <li class="nav-item">
             <button class="nav-link btn btn-neutral" data-toggle="modal" data-target="#myModal">
@@ -174,7 +174,7 @@
     </div>
 
 
-  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assetsidx/js/core/jquery.min.js" type="text/javascript"></script>
   @if ($errors->any())
     @foreach ($errors->all() as $error)
     @if ($contains = Str::contains($error, 'credentials'))
@@ -327,11 +327,11 @@
   <!-- End Navbar -->
   <div class="wrapper">
     <div class="page-header clear-filter" filter-color="orange">
-      <div class="page-header-image" data-parallax="true" style="background-image:url('./assets/img/niña.jpg');">
+      <div class="page-header-image" data-parallax="true" style="background-image:url('./assetsidx/img/niña.jpg');">
       </div>
       <div class="container">
         <div class="content-center brand">
-          <img class="n-logo" src="./assets/img/now-logo.png" alt="">
+          <img class="n-logo" src="./assetsidx/img/now-logo.png" alt="">
           <h1 class="h1-seo">Programación especializada para niños.</h1>
           <h3>“Las especies que sobreviven no son las más fuertes, sino aquellas que se adaptan mejor al cambio."</h3>
         </div>
@@ -350,22 +350,22 @@
           <div class="row">
             <div class="col-md-12">
               <!--div class="hero-images-container">
-                <img src="assets/img/hero-image-1.png" alt="">
+                <img src="assetsidx/img/hero-image-1.png" alt="">
               </div>
               <div class="hero-images-container-1">
-                <img src="assets/img/hero-image-2.png" alt="">
+                <img src="assetsidx/img/hero-image-2.png" alt="">
               </div>
               <div class="hero-images-container-2">
-                <img src="assets/img/hero-image-3.png" alt="">
+                <img src="assetsidx/img/hero-image-3.png" alt="">
               </div-->
               <div class="hero-images-container">
-                <img src="assets/img/niño1.JPG" alt="">
+                <img src="assetsidx/img/niño1.JPG" alt="">
               </div>
               <div class="hero-images-container-1">
-                <img src="assets/img/niña2.JPG" alt="">
+                <img src="assetsidx/img/niña2.JPG" alt="">
               </div>
               <div class="hero-images-container-2">
-                <img src="assets/img/niño2.JPG" alt="">
+                <img src="assetsidx/img/niño2.JPG" alt="">
               </div>
             </div>
           </div>
@@ -447,19 +447,19 @@
               </ol>
               <div class="carousel-inner" role="listbox">
                 <div class="carousel-item active">
-                  <img class="d-block" src="assets/img/niña.jpg" alt="First slide">
+                  <img class="d-block" src="assetsidx/img/niña.jpg" alt="First slide">
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Nature, United States</h5>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block" src="assets/img/niño1.jpg" alt="Second slide">
+                  <img class="d-block" src="assetsidx/img/niño1.jpg" alt="Second slide">
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Somewhere Beyond, United States</h5>
                   </div>
                 </div>
                 <div class="carousel-item">
-                  <img class="d-block" src="assets/img/niña2.jpg" alt="Third slide">
+                  <img class="d-block" src="assetsidx/img/niña2.jpg" alt="Third slide">
                   <div class="carousel-caption d-none d-md-block">
                     <h5>Yellowstone National Park, United States</h5>
                   </div>
@@ -509,19 +509,17 @@
   
   
   <!--   Core JS Files   -->
-  <script src="./assets/js/core/jquery.min.js" type="text/javascript"></script>
-  <script src="./assets/js/core/popper.min.js" type="text/javascript"></script>
-  <script src="./assets/js/core/bootstrap.min.js" type="text/javascript"></script>
+  <script src="./assetsidx/js/core/jquery.min.js" type="text/javascript"></script>
+  <script src="./assetsidx/js/core/popper.min.js" type="text/javascript"></script>
+  <script src="./assetsidx/js/core/bootstrap.min.js" type="text/javascript"></script>
   <!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
-  <script src="./assets/js/plugins/bootstrap-switch.js"></script>
+  <script src="./assetsidx/js/plugins/bootstrap-switch.js"></script>
   <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
-  <script src="./assets/js/plugins/nouislider.min.js" type="text/javascript"></script>
+  <script src="./assetsidx/js/plugins/nouislider.min.js" type="text/javascript"></script>
   <!--  Plugin for the DatePicker, full documentation here: https://github.com/uxsolutions/bootstrap-datepicker -->
-  <script src="./assets/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
-  <!--  Google Maps Plugin    -->
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <script src="./assetsidx/js/plugins/bootstrap-datepicker.js" type="text/javascript"></script>
   <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
-  <script src="./assets/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
+  <script src="./assetsidx/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
 
   <script>
 
@@ -542,7 +540,7 @@ function showModal() {
 
 
     $(document).ready(function() {
-      // the body of this function is in assets/js/now-ui-kit.js
+      // the body of this function is in assetsidx/js/now-ui-kit.js
       nowuiKit.initSliders();
     });
 

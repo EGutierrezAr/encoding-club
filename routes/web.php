@@ -23,5 +23,6 @@ Auth::routes();
 
 Route::post('/appointments', 'AppointmentController@store');
 
-Route::get('/home', 'HomeController@index')->name('home');
-
+//Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::get('/user_profile', 'HomeController@index')->name('user_profile');
