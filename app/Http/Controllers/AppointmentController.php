@@ -10,21 +10,20 @@ class AppointmentController extends Controller
     public function store(Request $request){
       
         $rules = [
-            
-            //'parentEmail' => 'required|email',
-            'parentEmail' => 'required',
-            'parentName' => 'required',
-            'parentPhone' => 'required',
-            'childName' => 'required',
-            'childAge' => 'required'
+            /*
+            'parentEmail' => 'required|email',
+            //'parentEmail' => 'required| min:3',
+            'parentName' => 'required| min:3',
+            'parentPhone' => 'required| min:10',
+            'childName' => 'required| min:3',
+            'childAge' => 'required| min:1' */
         ];
         $messages = [
-            'parentEmail.required' => 'Es necesario el correo electrónico del Padre',
-            'parentName.required' => 'Es necesario en nombre del Padre',
+            //'parentEmail.min' => 'xEs necesario el ',
             'parentName.min' => 'Como mínimo el nombre del Padre debe tener al menos 3 caracteres',
-            'parentPhone.required' => 'Es necesario en teléfono del Padre',
-            'childName.required' => 'Es necesario en nombre del niño',
-            'childAge.required' => 'Es necesario la edad del niño',
+            'parentPhone.required' => 'Como mínimo son 10 números',
+            'childName.required' => 'Como mínimo el nombre del niño debe tener al menos 3 caracteres',
+            'childAge.required' => 'Como mínimo el nombre del niño debe tener al menos 1 caracteres',
         ];
 
         //return back()->with(compact('notification'));

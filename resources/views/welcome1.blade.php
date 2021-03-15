@@ -200,98 +200,98 @@
   @endif
 
   <!-- Modal Appointment -->
-  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-   
-  <!--
-   @if ($errors->any())
-        <div class="alert alert-warning" role="alert">
-          <div class="container">
-          <div class="alert-icon">
-              <i class="now-ui-icons ui-1_bell-53"></i>
-          </div>
-          @foreach ($errors->all() as $error)
-          <strong>Warning!</strong> {{ $error }} 
-          @endforeach
-          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-              <span aria-hidden="true">
-              <i class="now-ui-icons ui-1_simple-remove"></i>
-              </span>
-          </button>
-          </div>
-      </div>
-    @endif -->
+  <div class="modal fade" id="myModal"  tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
     <form method="POST" action="{{ url('appointments') }}">
         @csrf
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header justify-content-center">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header justify-content-center">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                 <i class="now-ui-icons ui-1_simple-remove"></i>
-            </button>
-            <h4 class="title title-up"> Reserva tu clase GRATIS</h4>
+                </button>
+                <h4 class="title title-up"> Reserva tu clase GRATIS</h4>
+                </div>
+                  <div class="modal-body">
+                    <div class="card-body">
+                        <div class="input-group input-lg">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">
+                              <i class="now-ui-icons ui-1_email-85"></i>
+                              </span>
+                          </div>
+                          <input id="parentEmail" type="email" name="parentEmail" class="form-control @error('parentEmail') is-invalid @enderror" required value="{{ old('parentEmail') }}" autocomplete="Correo electrónico del padre" placeholder="Correo electrónico del padre">
+                          @error('parentEmail')
+                          <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </div>
+                        <div class="input-group input-lg">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">
+                              <i class="now-ui-icons users_single-02"></i>
+                              </span>
+                          </div>
+                          <input id="parentName" type="text" name="parentName" class="form-control @error('parentName') is-invalid @enderror" required value="{{ old('parentEmail') }}" autocomplete="Nombre del Padre" placeholder="Nombre del Padre">
+                          @error('parentName')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                        </div>
+                        <div class="input-group input-lg">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">
+                              <i class="now-ui-icons tech_mobile"></i>
+                              </span>
+                          </div>
+                          <input id="parentPhone" type="text" name="parentPhone" class="form-control @error('parentPhone') is-invalid @enderror" required value="{{ old('parentPhone') }}" autocomplete="Teléfono" placeholder="Teléfono">
+                          @error('parentPhone')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                        </div>
+                        <div class="input-group input-lg">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">
+                              <i class="now-ui-icons users_circle-08"></i>
+                              </span>
+                          </div>
+                          <input id="childName" type="text" name="childName" class="form-control @error('childName') is-invalid @enderror" required value="{{ old('childName') }}" autocomplete="Nombre del Niño o Niña" placeholder="Nombre del Niño o Niña">
+                          @error('childName')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                        </div>
+                        <div class="input-group input-lg">
+                          <div class="input-group-prepend">
+                              <span class="input-group-text">
+                              <i class="now-ui-icons sport_user-run"></i>
+                              </span>
+                          </div>
+                          <input id="childAge" type="text" name="childAge" class="form-control @error('childAge') is-invalid @enderror" required value="{{ old('childAge') }}" autocomplete="Edad del Niño o Niña" placeholder="Edad del Niño o Niña">
+                          @error('childAge')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                          @enderror
+                        </div>
+                    </div>
+                 </div>
+                <div class="modal-footer  justify-content-center">
+                <button type="submit" class="btn btn-success text-center ">Entrar</button>
+                </div>
             </div>
-            <div class="modal-body">
-            <div class="card-body">
-                <div class="input-group input-lg">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                    <i class="now-ui-icons ui-1_email-85"></i>
-                    </span>
-                </div>
-                <input type="text" name="parentEmail" class="form-control" value="{{ old('parentEmail') }}" placeholder="Correo electrónico del padre" required>
-                   @error('parentEmail')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                    @enderror
-                </div>
-                <div class="input-group input-lg">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                    <i class="now-ui-icons users_single-02"></i>
-                    </span>
-                </div>
-                <input type="text" name="parentName" class="form-control" value="{{ old('parentName') }}" placeholder="Nombre del padre" required>
-                </div>
-                <div class="input-group input-lg">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                    <i class="now-ui-icons tech_mobile"></i>
-                    </span>
-                </div>
-                <input type="text" name="parentPhone" class="form-control" value="{{ old('parentPhone') }}" placeholder="Teléfono" required>
-                </div>
-                <div class="input-group input-lg">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                    <i class="now-ui-icons users_circle-08"></i>
-                    </span>
-                </div>
-                <input type="text" name="childName" class="form-control" value="{{ old('childName') }}" placeholder="Nombre del Niño" required>
-                </div>
-                <div class="input-group input-lg">
-                <div class="input-group-prepend">
-                    <span class="input-group-text">
-                    <i class="now-ui-icons sport_user-run"></i>
-                    </span>
-                </div>
-                <input type="text" name="childAge" class="form-control" value="{{ old('childAge') }}" placeholder="Edad del Niño" required>
-                </div>
             </div>
-
-            </div>
-            <div class="modal-footer  justify-content-center">
-            <button tipe="submit" class="btn btn-success text-center ">Reservar</button>
-            </div>
-        </div>
-        </div>
-    </form>
-  </div>
+        </form>
+    </div>
 
     <!-- Modal Succes Appointment -->
     <div class="modal fade" id="myModalSuccess" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <!--
+        
         <div class="alert alert-success" role="alert">
                 <div class="container">
                 <div class="alert-icon">
@@ -306,7 +306,7 @@
                     </span>
                 </button>
                 </div>
-        </div> -->
+        </div> 
 
         <div class="modal-dialog">
         <div class="modal-content">
@@ -337,10 +337,10 @@
         </div>
         <h6 class="category category-absolute">Designed by
           <a href="http://invisionapp.com/" target="_blank">
-            <img src="./assets/img/invision-white-slim.png" class="invision-logo" />
+            <img src="https://looka.com/s/63042023" class="invision-logo" />
           </a>. Coded by
           <a href="https://www.creative-tim.com" target="_blank">
-            <img src="./assets/img/creative-tim-white-slim2.png" class="creative-tim-logo" />
+            <img src="https://looka.com/s/63042023" class="creative-tim-logo" />
           </a>.</h6>
       </div>
     </div>
