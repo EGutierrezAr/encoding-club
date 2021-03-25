@@ -31,6 +31,9 @@ $factory->define(User::class, function (Faker $faker) {
         'city' =>  $faker->city,
         'level' => $faker->randomElement([1,2,3]),
         'role' => $faker->randomElement(['student','teacher','advisor']),
+
+        'status' => $faker->randomElement([1,2,3]),
+        'observation' => $faker->text(200),
         
     ];
 });

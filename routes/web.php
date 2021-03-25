@@ -32,3 +32,13 @@ Route::resource('students', 'StudentController');
 
 // Techers
 Route::resource('teachers', 'TeacherController');
+
+// Advisor
+Route::resource('advisors', 'AdvisorController');
+
+//Document
+Route::get('/files/create', 'DocumentController@create');
+Route::post('/files', 'DocumentController@store');
+Route::get('/files', 'DocumentController@index');
+Route::get('files/{id}', 'DocumentController@show');
+Route::get('files/download/{file}', 'DocumentController@download');

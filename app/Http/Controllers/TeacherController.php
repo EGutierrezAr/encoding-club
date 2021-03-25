@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 
 class TeacherController extends Controller
 {
@@ -13,7 +14,8 @@ class TeacherController extends Controller
      */
     public function index()
     {
-        $teachers = User::all();
+        $teachers = User::teachers()->paginate(5);
+        //$teachers = User::teachers()->get(); //ALL
         return view('teachers.index',compact('teachers'));
     }
 
@@ -27,6 +29,29 @@ class TeacherController extends Controller
         return view('teachers.create');
     }
 
+    private function performValidation(Request $request){
+        $rules = [
+            'name' => 'required|min:3',
+            'email' => 'required|min:3',
+            'password' => 'required|min:3',
+            /*'last_name' => 'nullable|min:3',
+            'phone' => 'nullable|min:3',
+            'address' => 'nullable|min:3',
+            'city' => 'nullable|min:3',
+            'level' => 'nullable|min:3',
+            'status' => 'nullable|min:3',
+            'observation' => 'nullable|min:3',*/
+        ];
+        /*
+        $messages = [
+            'name.min' => 'Como mínimo el nombre del estudiante debe tener al menos 3 caracteres',
+        ];*/
+
+        //return back()->with(compact('notification'));
+       
+        $this->validate($request, $rules);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -35,7 +60,18 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->performValidation($request);
+
+        User::create(
+            $request->only('name','email','password','last_name','phone','address','city','level','status','observation')
+            + [
+                'role' => 'teacher',
+                'password' => bcrypt($request->input('password')),
+            ]
+        );
+
+        $notification = "El estudiate se ha registrado correctamente.";
+        return redirect('/teachers')->with(compact('notification'));
     }
 
     /**
@@ -57,7 +93,8 @@ class TeacherController extends Controller
      */
     public function edit($id)
     {
-        //
+        $teacher = User::teachers()->findOrFail($id);
+        return view('teachers.edit', compact('teacher'));
     }
 
     /**
@@ -69,7 +106,28 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $rules = [
+            'name' => 'required|min:3',
+            /*'last_name' => 'nullable|min:3',
+            'phone' => 'nullable|min:3',
+            'address' => 'nullable|min:3',
+            'city' => 'nullable|min:3',
+            'level' => 'nullable|min:3',
+            'status' => 'nullable|min:3',
+            'observation' => 'nullable|min:3',*/
+        ];
+
+        $this->validate($request, $rules);
+
+        $user = User::teachers()->findOrFail($id);
+
+        $data = $request->only('name','email','password','last_name','phone','address','city','level','status','observation');
+
+        $user->fill($data);
+        $user->save();  //UPDATE
+
+        $notification = "El profesor se ha actualizado correctamente.";
+        return redirect('/teachers')->with(compact('notification')); 
     }
 
     /**
@@ -78,8 +136,12 @@ class TeacherController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $teacher)
     {
-        //
+        $deleteTeacher = $teacher->name;
+        $teacher->delete();
+
+        $notification = "El profesor $deleteTeacher se ha eliminado correctamente.";
+        return redirect('/teachers')->with(compact('notification'));
     }
 }

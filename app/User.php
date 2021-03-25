@@ -16,8 +16,9 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'last_name','phone','address','city','level','role','status','observation'
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,4 +37,16 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeStudents($query){
+        return $query->where('role','student');
+    }
+
+    public function scopeTeachers($query){
+        return $query->where('role','teacher');
+    }
+
+    public function scopeAdvisors($query){
+        return $query->where('role','advisor');
+    }
 }

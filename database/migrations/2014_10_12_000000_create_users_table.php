@@ -24,8 +24,10 @@ class CreateUsersTable extends Migration
             $table->string('phone')->nullable();
             $table->string('address')->nullable();
             $table->string('city')->nullable();
-            $table->string('level')->nullable();
+            $table->string('level')->nullable();  // 'basico','medio','avanzado'
             $table->string('role')->nullable(); // 'admin','student','teacher','advisor'
+            $table->string('status')->nullable(); // 'prueba','activo','inactivo'
+            $table->string('observation')->nullable(); 
 
             $table->rememberToken();
             $table->timestamps();
