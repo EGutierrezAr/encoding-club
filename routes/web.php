@@ -42,3 +42,6 @@ Route::post('/files', 'DocumentController@store');
 Route::get('/files', 'DocumentController@index');
 Route::get('files/{id}', 'DocumentController@show');
 Route::get('files/download/{file}', 'DocumentController@download');
+
+//Scheduler
+Route::get('/schedule', 'ScheduleController@edit');
