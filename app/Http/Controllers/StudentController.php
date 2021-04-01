@@ -304,13 +304,13 @@ class StudentController extends Controller
             if (!empty($datesAvailable['morning']) || !empty($datesAvailable['afternoon'])) {
 
                 foreach( $datesAvailable['morning'] as $tim) {
-                    $teacher = $scheduleService->getAvailableTeachers($date->format('Y-m-d'),$start = new Carbon($tim['start']), $end = new Carbon($tim['end']));
-                    $teachers[] = Arr::add(['days' => $date->format('d-m-Y')], 'start', $teacher);
+                    $teacher = $scheduleService->getAvailableTeachers($date->format('Y-m-d'),$start = new Carbon($tim['start']), $end = new Carbon($tim['end']), "morning");
+                    $teachers[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teachers', $teacher);
                 }
                 
                 foreach( $datesAvailable['afternoon'] as $tim) {
-                    $teacher = $scheduleService->getAvailableTeachers($date->format('Y-m-d'),$start = new Carbon($tim['start']), $end = new Carbon($tim['end']));
-                    $teachers[] = Arr::add(['days' => $date->format('d-m-Y')], 'end', $teacher);
+                    $teacher = $scheduleService->getAvailableTeachers($date->format('Y-m-d'),$start = new Carbon($tim['start']), $end = new Carbon($tim['end']), 'afternoon');
+                    $teachers[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teachers', $teacher);
                 }
  
                 //$teachers[] = Arr::add(['days' => $date->format('d-m-Y')], 'time', 'nada');    
@@ -325,7 +325,7 @@ class StudentController extends Controller
 
                 $datesTime[] = Arr::add(['days' => $date->format('d-m-Y')], 'time', $datesAvailable['morning']); 
 
-                $datesTime2[] = Arr::crossJoin($datesTime, $teachers); 
+                $datesTime2[] = Arr::crossJoin($datesAvailable['morning'], $teachers); 
                 $datesTime3[] = Arr::flatten($datesTime2);
                 
                 
@@ -333,14 +333,14 @@ class StudentController extends Controller
                 
             }
         } 
-        dd( $datesTime3);
+        //dd( $teachers);
         //$datesDoctor['days'] = $dates;
   
        // dd($datesTime);
         //return $datesDoctor;
         
-        //$nameUser = User::students()->findOrFail($id)->name;
-        $nameUser = User::teachers()->findOrFail($id)->name;
+        $nameUser = User::students()->findOrFail($id)->name;
+        //$nameUser = User::teachers()->findOrFail($id)->name;
          //dd($nameUser);
         return view('students.addTeacher',compact('datesTime', 'teachers','nameUser')); 
     	

@@ -5,6 +5,7 @@ use App\Interfaces\ScheduleServiceInterface;
 use Carbon\Carbon;
 use App\Appointment;
 use App\User;
+use App\Services\DB;
 
 class ScheduleService implements ScheduleServiceInterface
 {
@@ -51,18 +52,72 @@ class ScheduleService implements ScheduleServiceInterface
         return $data;
 	}
 
-    public function getAvailableTeachers($date, Carbon $start, Carbon $end)
+    public function getAvailableTeachers($date, Carbon $start, Carbon $end, $time)
 	{
 
-        
+        if ($time == 'morning'){
+            $condition1 = "morning_start";
+            $condition2 = "morning_end"; 
+        }
+        else {
+            $condition1 = "afternoon_start";
+            $condition2 = "afternoon_end";
+        }
+
         $userAvailables = WorkDay::where ('active',true)
+        ->whereExists(function ($query) {
+            $query->select(WorkDay::raw(1))
+                ->from('users')
+                ->whereColumn('work_days.user_id', 'users.id')
+                ->where('users.role','=',"teacher");
+        })
         ->where('day', $this->getDayFromDate($date))
-        ->where('morning_start',$start->format('H:i:s'))
-        ->Where('morning_end',$end->format('H:i:s'))
-        ->orWhere('afternoon_start',$start->format('H:i:s'))
-        ->Where('afternoon_end',$end->format('H:i:s'))
+
+        ->where ($condition1,$start->format('H:i:s'))
+        ->where ($condition2,$end->format('H:i:s'))
+
         ->distinct('user_id')
+        ->get('user_id')->toArray() ;
+
+
+      /*
+        $userAvailables = WorkDay::where ('active',true)
+
+        ->whereExists(function ($query) {
+            $query->select(WorkDay::raw(1))
+                  ->from('users')
+                  ->whereColumn('work_days.user_id', 'users.id')
+                  ->where('users.role','=',"teacher");
+        })
+
+        ->where('day', $this->getDayFromDate($date))
+
+
+            ->where('morning_start',$start->format('H:i:s'))
+            ->Where('morning_end',$end->format('H:i:s'))
+
+     
+            ->where('afternoon_start',$start->format('H:i:s'))
+            ->Where('afternoon_end',$end->format('H:i:s'))
+ 
+
+        orWhere(function($query) use ($start, $end) {
+
+            $query->where('afternoon_start',$start->format('H:i:s'))
+                  ->where('afternoon_end',$end->format('H:i:s'));
+        })
+
+        ->distinct('user_id')
+
+
         ->get('user_id')->toArray();
+
+        */
+
+   /*if ($start->format('H:i:s') == '09:00:00')
+        dd($userAvailables);
+*/
+
         //->unique('user_id');
         /*
         ->where('morning_start',$time->format('H:i:s'))
@@ -75,10 +130,11 @@ class ScheduleService implements ScheduleServiceInterface
         
         if (count($userAvailables) > 0){
                 $usersAvailables = array_map(function($item){
-                    $user = User::teachers()->findOrFail($item['user_id']);
+                    $user = User::findOrFail($item['user_id']);
                     return $user;
                },$userAvailables);        
         }
+
 
         /*
 

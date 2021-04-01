@@ -60,8 +60,12 @@
                           <form action="{{ url('teachers/'.$teacher->id) }}" method="POST">
                           @csrf()
                           @method('DELETE')
-                          <a href="{{ url('teachers/'.$teacher->id.'/edit') }}" class="btn btn-primary btn-round">Editar</a>
-                          <button type="submit" class="btn btn-primary btn-round">Eliminar</button>
+
+                          <a href="{{ url('teachers/'.$teacher->id.'/edit') }}" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons"  title="Editar" >edit</i></a>
+                            
+                          <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">close</i>
                           </form>
                         </td>
                       </tr>

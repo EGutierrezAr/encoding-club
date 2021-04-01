@@ -53,18 +53,14 @@
                                         {{   $tim['end'] }} 
                                     </td>
                                     <td>
-                                    
-
                                     <div class="form-group col-md-6">
-                                    <label for="email">Médico</label>
                                     <select name="doctor_id" id="doctor" class="form-control" required>
                                      @foreach($teachers as $teacher)  
                                       @foreach($teacher['teachers'] as $tea)  
-                                       @if ($time['days'] == $teacher['days'])
-                                        
+        
+                                        @if ($time['days'].$tim['start'] == $teacher['days'])
                                         <option value="{{ $tea['id'] }}" >{{ $tea['name'] }}</option>
-                                 
-                                       @endif
+                                        @endif
                                       @endforeach
                                      @endforeach
                                     </select>
