@@ -79,9 +79,15 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item ">
+            <a class="nav-link" href="/schedule">
+              <i class="material-icons">library_books</i>
+              <p>Profesores Horarios</p>
+            </a>
+          </li>
+          <li class="nav-item ">
             <a class="nav-link" href="/files">
               <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
+              <p>Adminitrador de Archivos</p>
             </a>
           </li>
           <li class="nav-item ">

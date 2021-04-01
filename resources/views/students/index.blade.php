@@ -7,9 +7,11 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-primary">
-                <h4 class="card-title ">Estudiantes <a href="{{ url('students/create') }}" class="btn btn-primary btn-round">Nuevo</a></h4>
+                <h4 class="card-title ">Estudiantes </h4>
                 <p class="card-category"> Lista de todos los estudiantes activos</p>
-                
+                <div class="col text-right">
+                <a href="{{ url('students/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
+                </div>
               </div>
               <div class="card-body">
                 @if(session('notification'))
@@ -55,13 +57,27 @@
                         <td>
                           Oud-Turnhout
                         </td>
-                        <td>
-                          
+                        <!--td>
                           <form action="{{ url('students/'.$student->id) }}" method="POST">
                           @csrf()
                           @method('DELETE')
                           <a href="{{ url('students/'.$student->id.'/edit') }}" class="btn btn-primary btn-round">Editar</a>
                           <button type="submit" class="btn btn-primary btn-round">Eliminar</button>
+                          </form>
+                        </td-->
+                        <td class="td-actions text-left">
+                          <form action="{{ url('students/'.$student->id) }}" method="POST">
+                            @csrf()
+                            @method('DELETE')
+                            <a href="{{ url('students/'.$student->id.'/editSchedule') }}" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons"  title="Horario" >edit_calendar</i></a>
+                            <a href="{{ url('students/'.$student->id.'/edit') }}" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons"  title="Editar" >edit</i></a>
+                            <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons">close</i>
+                            </button>
+                            <a href="{{ url('students/'.$student->id.'/appointment') }}" class="btn btn-primary btn-link btn-sm">
+                            <i class="material-icons"  title="Clase" >edit_calendar</i></a>
                           </form>
                         </td>
                       </tr>
