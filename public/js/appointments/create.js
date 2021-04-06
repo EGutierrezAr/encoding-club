@@ -2,10 +2,14 @@
 
 let $teacher12;
 
-  function selectFunction(val) {
-    alert(val)
-    d = document.getElementById(val).value;
-    const url = `/students/52/${d}/assingTeacher`
+  function selectFunction(teacherid) {
+    //alert(teacherid)
+    dia= String(teacherid).substring(7, 9)
+    hora= String(teacherid).substring(9, 11)
+    teacherid = document.getElementById(teacherid).value;
+    
+
+    const url = `/students/52/${teacherid}/${dia}/${hora}/assingTeacher`
     alert(url)
     document.getElementById("url12").href = url;
 
