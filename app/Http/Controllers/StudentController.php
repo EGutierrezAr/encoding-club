@@ -339,8 +339,9 @@ class StudentController extends Controller
     	return back()->with(compact('notification'));
     }
 
-    public function assingTeacher (Request $request) {
-        dd($teacher_id);
+    public function assingTeacher (Request $request, $id, $teacherid) {
+        //dd($id);
+        dd($teacherid);
     }
     
     private function updateOrCreateAppoitment ($userId, $student, $date, $timeStart, $timeEnd)

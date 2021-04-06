@@ -33,7 +33,7 @@ Route::get('students/{id}/editSchedule', 'StudentController@editSchedule');
 Route::post('students/{id}/schedule', 'StudentController@storeSchedule');
 Route::post('students/{id}/schedule', 'StudentController@storeSchedule');
 Route::get('students/{id}/appointment', 'StudentController@appointment');
-Route::get('students/{id}/assingTeacher', 'StudentController@assingTeacher');
+Route::get('students/{id}/{teacherid}/assingTeacher', 'StudentController@assingTeacher');
 
 
 // Techers

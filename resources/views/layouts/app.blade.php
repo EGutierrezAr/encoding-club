@@ -701,6 +701,7 @@ The above copyright notice and this permission notice shall be included in all c
     </div>
   </div-->
   <!--   Core JS Files   -->
+
   <script src="{{ asset('js/core/jquery.min.js') }}"></script>
   <script src="{{ asset('js/core/popper.min.js') }}"></script>
   <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>
@@ -920,6 +921,8 @@ The above copyright notice and this permission notice shall be included in all c
   </script>
   <script>
     $(document).ready(function() {
+
+   
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
 

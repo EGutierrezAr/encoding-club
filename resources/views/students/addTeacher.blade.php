@@ -71,7 +71,7 @@
                                     </td>
                                     <td>
                                     <div class="form-group col-md-9">
-                                    <select name="teacher_id" id="teacher_id" class="form-control" required>
+                                    <select name="teacher" id="teacher{{ Str::substr($time['days'],0,2) }}{{ Str::substr($tim['start'],0,2) }}"   onchange="selectFunction('teacher{{ Str::substr($time['days'],0,2) }}{{ Str::substr($tim['start'],0,2) }}')" class="form-control" required>
                                     @if($teachers != null)
                                         @foreach($teachers as $teacher)  
                                             @foreach($teacher['teachers'] as $tea)  
@@ -83,13 +83,12 @@
                                         @endforeach
                                         @endforeach
                                     @endif
-                                    </select>
+
                                     </div>
                                     </td>
                                     <td class="td-actions text-center">
-                                    <form action="{{ url('/students/'.$student->id.'/assingTeacher') }}" method="post">
-                                         @csrf
-                                        <a href="{{ url('students/'.$student->id,$time['days'].'/assingTeacher') }}" class="btn btn-primary btn-link btn-sm">
+                                    <form action="">
+                                        <a href="#"  id="url{{ Str::substr($time['days'],0,2) }}" class="btn btn-primary btn-link btn-sm">
                                          <i class="material-icons"  title="Horario" >edit_calendar</i></a>
                                     </form>
                                     </td>
@@ -108,3 +107,6 @@
 </div>
 
 @endsection
+
+
+<script src="{{ asset('/js/appointments/create.js') }}"></script>
