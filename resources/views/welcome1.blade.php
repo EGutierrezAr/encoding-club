@@ -240,8 +240,8 @@
                               <i class="now-ui-icons ui-1_email-85"></i>
                               </span>
                           </div>
-                          <input id="parentEmail" type="email" name="parentEmail" class="form-control @error('parentEmail') is-invalid @enderror" required value="{{ old('parentEmail') }}" autocomplete="Correo electrónico del padre" placeholder="Correo electrónico del padre">
-                          @error('parentEmail')
+                          <input id="parent_email" type="email" name="parent_email" class="form-control @error('parent_email') is-invalid @enderror" required value="{{ old('parent_email') }}" autocomplete="Correo electrónico del padre" placeholder="Correo electrónico del padre">
+                          @error('parent_email')
                           <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                           </span>
@@ -253,8 +253,8 @@
                               <i class="now-ui-icons users_single-02"></i>
                               </span>
                           </div>
-                          <input id="parentName" type="text" name="parentName" class="form-control @error('parentName') is-invalid @enderror" required value="{{ old('parentEmail') }}" autocomplete="Nombre del Padre" placeholder="Nombre del Padre">
-                          @error('parentName')
+                          <input id="parent_name" type="text" name="parent_name" class="form-control @error('parent_name') is-invalid @enderror" required value="{{ old('parent_name') }}" autocomplete="Nombre del Padre" placeholder="Nombre del Padre">
+                          @error('parent_name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
@@ -266,8 +266,8 @@
                               <i class="now-ui-icons tech_mobile"></i>
                               </span>
                           </div>
-                          <input id="parentPhone" type="text" name="parentPhone" class="form-control @error('parentPhone') is-invalid @enderror" required value="{{ old('parentPhone') }}" autocomplete="Teléfono" placeholder="Teléfono">
-                          @error('parentPhone')
+                          <input id="parent_phone" type="text" name="parent_phone" class="form-control @error('parent_phone') is-invalid @enderror" required value="{{ old('parent_phone') }}" autocomplete="Teléfono" placeholder="Teléfono">
+                          @error('parent_phone')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
@@ -279,8 +279,8 @@
                               <i class="now-ui-icons users_circle-08"></i>
                               </span>
                           </div>
-                          <input id="childName" type="text" name="childName" class="form-control @error('childName') is-invalid @enderror" required value="{{ old('childName') }}" autocomplete="Nombre del Niño o Niña" placeholder="Nombre del Niño o Niña">
-                          @error('childName')
+                          <input id="student_name" type="text" name="student_name" class="form-control @error('student_name') is-invalid @enderror" required value="{{ old('student_name') }}" autocomplete="Nombre del estudiante" placeholder="Nombre estudiante">
+                          @error('student_name')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>
@@ -292,8 +292,8 @@
                               <i class="now-ui-icons sport_user-run"></i>
                               </span>
                           </div>
-                          <input id="childAge" type="text" name="childAge" class="form-control @error('childAge') is-invalid @enderror" required value="{{ old('childAge') }}" autocomplete="Edad del Niño o Niña" placeholder="Edad del Niño o Niña">
-                          @error('childAge')
+                          <input id="student_age" type="text" name="student_age" class="form-control @error('student_age') is-invalid @enderror" required value="{{ old('student_age') }}" autocomplete="Edad del estudiante" placeholder="Edad estudiante">
+                          @error('student_age')
                               <span class="invalid-feedback" role="alert">
                                   <strong>{{ $message }}</strong>
                               </span>

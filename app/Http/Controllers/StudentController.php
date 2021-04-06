@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Interfaces\ScheduleServiceInterface;
 use App\User;
 use App\WorkDay;
+use App\Appointment;
 use Illuminate\Support\Arr; 
 
 use Carbon\Carbon;
@@ -87,7 +88,7 @@ class StudentController extends Controller
         $this->validate($request, $rules);
 
         $password = $request->input('password');
-        User::create(
+        $user = User::create(
             $request->only('name','email','password','last_name','phone','address','city','level','status','observation')
             + [
                 'role' => 'student',
@@ -95,8 +96,17 @@ class StudentController extends Controller
             ]
         );
 
+        appointment::updateOrCreate(
+            [
+                'parent_email'=> $request->input('email')
+            ], [
+            'student_id' => $user->id,
+            'type' => 'prueba'
+            ]
+        );
+
         $notification = "El estudiate se ha registrado correctamente.";
-        return redirect('/students');
+        return redirect('/students')->with(compact('notification')); 
 
         /*
         //dd($request->all());
@@ -237,9 +247,8 @@ class StudentController extends Controller
     	return view('students/schedule', compact('workDays','days', 'nameUser', 'id')); 
     }
 
-    public function storeSchedule(Request $request, $id)
+    public function storeSchedule(Request $request, $id, ScheduleServiceInterface $scheduleService)
     {
-        //dd($request->all());
 
     	$active = $request ->input('active') ?: [];
     	$morning_start = $request ->input('morning_start');
@@ -248,6 +257,13 @@ class StudentController extends Controller
     	$afternoon_end = $request ->input('afternoon_end');
 
     	$errors = [];
+
+        $student = User::students()->findOrFail($id);
+
+        if ($student->status != '1')
+            $this->deleteAppoitmentByChange ($id);
+
+
     	for($i=0; $i<7; ++$i) {
     		if ($morning_start[$i] > $morning_end[$i]) {
     			$errors [] = 'Las horas del turno mañana son inconsistentes para el día '.$this->days[$i].'.';
@@ -271,15 +287,108 @@ class StudentController extends Controller
 		            'afternoon_end' => $afternoon_end[$i]
 	        	]
 	    	);
-	    } 
 
+            //dd($active);
+            if(in_array($i, $active) == 1) {
+               
+                $start_date = Carbon::today(); 
+                $end_date = Carbon::today()->addDays(6);
+
+                for($date = $start_date; $date->lte($end_date); $date->addDay()) { 
+
+                /* METER VALIDACIÓN DE CUANTOS DIAS SE CALCULA LA PROXIMA CITA, DEPENDIENDO DE LA DURACIÓN DEL CURSO*/ 
+
+                    $dateCarbon = new Carbon($date);
+                    $iday = $dateCarbon->dayOfWeek;
+                    $day = ($iday==0 ? 6 : $iday-1);
+                 
+                    if ($i == $day) {
+
+                        $datesAvailable = $scheduleService->getAvailableIntervals($date->format('Y-m-d'), $id);
+
+                        if (!empty($datesAvailable['morning']) || !empty($datesAvailable['afternoon'])) {
+                            foreach( $datesAvailable['morning'] as $tim) {
+
+                                $tmpStart = new Carbon($tim['start']);
+                                $tmpEnd = new Carbon($tim['end']);
+
+                                if ($tmpStart != $tmpEnd){
+                                    $this->updateOrCreateAppoitment($id,  $student, $date ,$tmpStart, $tmpEnd);
+                                }
+                            }
+
+                            foreach( $datesAvailable['afternoon'] as $tim) {
+                                $tmpStart = new Carbon($tim['start']);
+                                $tmpEnd = new Carbon($tim['end']);
+
+                                if ($tmpStart != $tmpEnd){
+                                    $this->updateOrCreateAppoitment($id,  $student, $date ,$tmpStart, $tmpEnd);
+                                }
+                            }
+                        }
+
+                    }
+                }
+                //dd($days);
+            }
+	    } 
+        
 	    if(count($errors) > 0)
     		return back()->with(compact('errors'));
-
     	$notification = 'Los cambios se han guardado correctamente';
     	return back()->with(compact('notification'));
     }
 
+    public function assingTeacher (Request $request) {
+        dd($teacher_id);
+    }
+    
+    private function updateOrCreateAppoitment ($userId, $student, $date, $timeStart, $timeEnd)
+    {
+        //$student = $user = User::students()->findOrFail($userId);
+
+        if ($student->status == '1'){
+            appointment::updateOrCreate(
+                [
+                    'student_id' => $userId
+                ], [
+                'date' => $date->format('Y-m-d'),
+                'time_start' => $timeStart,
+                'time_end' => $timeEnd
+                ]
+            );
+        } else {
+            $appoitment = Appointment::where('student_id',$userId)->get();
+
+            appointment::create(
+                [
+                    'parent_email' => $appoitment[0]->parent_email,
+                    'parent_name' => $appoitment[0]->parent_name,
+                    'parent_phone' => $appoitment[0]->parent_phone,
+                    'student_name' => $student->name." ".$student->last_name,
+
+                    'student_id' => $userId,
+                    'date' => $date->format('Y-m-d'),
+                    'time_start' => $timeStart,
+                    'time_end' => $timeEnd,
+                    'status' => 'reservada',
+                    'type' => 'pagada'
+                ]
+            );
+        }
+    }
+
+    private function deleteAppoitmentByChange ($userId)
+    {
+        $appoitmentToDelete = Appointment::where('student_id',$userId)
+        ->where('type','pagada')
+        ->get();
+
+        if (count($appoitmentToDelete) > 0){
+            for($i=0; $i < count($appoitmentToDelete); ++$i) 
+                Appointment::where('id',$appoitmentToDelete[$i]->id)->delete();
+        }
+    }
 
     public function appointment($id, ScheduleServiceInterface $scheduleService)
     {
@@ -290,10 +399,6 @@ class StudentController extends Controller
         $start_date = Carbon::today(); 
         $end_date = Carbon::today()->addDays(20);
 
-        /*
-        $dates = [];
-        $dates1 = [];
-        $datesDoctor = []; */
         $teachers=[];
 
         $datesTime = [];
@@ -301,18 +406,53 @@ class StudentController extends Controller
         $datesTime3 = [];
         for($date = $start_date; $date->lte($end_date); $date->addDay()) { 
             $datesAvailable = $scheduleService->getAvailableIntervals($date->format('Y-m-d'), $studentId);
-            if (!empty($datesAvailable['morning']) || !empty($datesAvailable['afternoon'])) {
 
+            
+
+            /*if($date->format('Y-m-d') == '2021-04-05'){
+              if (!empty($datesAvailable['afternoon'])){
+                dd($datesAvailable['afternoon']);
+              }
+              dd($datesAvailable);
+            }*/
+            
+
+            if (!empty($datesAvailable['morning']) || !empty($datesAvailable['afternoon'])) {
+               
                 foreach( $datesAvailable['morning'] as $tim) {
                     $teacher = $scheduleService->getAvailableTeachers($date->format('Y-m-d'),$start = new Carbon($tim['start']), $end = new Carbon($tim['end']), "morning");
+                    if($teacher != null)
                     $teachers[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teachers', $teacher);
+                    
+                    $teacherName = $scheduleService->getTeacherAssigned($studentId, $date->format('Y-m-d'), $start = new Carbon($tim['start']), $end = new Carbon($tim['end']));
+                   
+                    //dd($teacherName);
+                   
+                    if($teacherName != null)
+                        $teacherNameDisplay[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teacherName', $teacherName);
+                    else
+                    $teacherNameDisplay=null;
+                    
                 }
                 
+               
+
                 foreach( $datesAvailable['afternoon'] as $tim) {
                     $teacher = $scheduleService->getAvailableTeachers($date->format('Y-m-d'),$start = new Carbon($tim['start']), $end = new Carbon($tim['end']), 'afternoon');
+                    if($teacher != null)
                     $teachers[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teachers', $teacher);
+
+                    $teacherName = $scheduleService->getTeacherAssigned($studentId, $date->format('Y-m-d'), $start = new Carbon($tim['start']), $end = new Carbon($tim['end']));
+                    if($teacherName != null)
+                        $teacherNameDisplay[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teacherName', $teacherName);
+                    else
+                        $teacherNameDisplay=null;
                 }
- 
+
+                   // dd("a", $teacherNameDisplay);
+   
+               
+                
                 //$teachers[] = Arr::add(['days' => $date->format('d-m-Y')], 'time', 'nada');    
                               /*
                 //$dates[] = $date->format('d-m-Y');
@@ -331,18 +471,17 @@ class StudentController extends Controller
                 
                 $datesTime[] = Arr::add(['days' => $date->format('d-m-Y')], 'time', $datesAvailable['afternoon']);
                 
+                
             }
         } 
-        //dd( $teachers);
-        //$datesDoctor['days'] = $dates;
-  
-       // dd($datesTime);
-        //return $datesDoctor;
+
         
-        $nameUser = User::students()->findOrFail($id)->name;
+        
+        $student = User::students()->findOrFail($id);
         //$nameUser = User::teachers()->findOrFail($id)->name;
          //dd($nameUser);
-        return view('students.addTeacher',compact('datesTime', 'teachers','nameUser')); 
+
+        return view('students.addTeacher',compact('datesTime','teacherNameDisplay' , 'teachers','student')); 
     	
     }
 }

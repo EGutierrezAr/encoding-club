@@ -15,15 +15,26 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->string('parentEmail');
-            $table->string('parentName');
-            $table->string('parentPhone');
-            $table->string('childName');
-            $table->string('childAge');
-            $table->string('time')->nullable();
+            $table->string('parent_email');
+            $table->string('parent_name');
+            $table->string('parent_phone');
+            $table->string('student_name');
+            $table->string('student_age')->nullable();
+
             $table->string('date')->nullable();
-            $table->string('idTeacher')->nullable();
-            $table->string('status')->nullable();
+            $table->time('time_start')->nullable();
+            $table->time('time_end')->nullable();
+
+            // fk teacher
+            $table->unsignedInteger('student_id')->nullable();;
+            $table->foreign('student_id')->references('id')->on('users');
+
+            // fk teacher
+            $table->unsignedInteger('teacher_id')->nullable();;
+            $table->foreign('teacher_id')->references('id')->on('users');
+            
+            $table->string('status')->nullable(); //reservada, planificada, atendida
+            $table->string('type')->nullable();  //prueba, pagada
             $table->string('comments')->nullable();
             $table->timestamps();
         });

@@ -31,7 +31,9 @@ Route::get('/user_profile', 'HomeController@index')->name('user_profile');
 Route::resource('students', 'StudentController');
 Route::get('students/{id}/editSchedule', 'StudentController@editSchedule');
 Route::post('students/{id}/schedule', 'StudentController@storeSchedule');
+Route::post('students/{id}/schedule', 'StudentController@storeSchedule');
 Route::get('students/{id}/appointment', 'StudentController@appointment');
+Route::get('students/{id}/assingTeacher', 'StudentController@assingTeacher');
 
 
 // Techers
