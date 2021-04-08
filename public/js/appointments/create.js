@@ -1,17 +1,15 @@
 
 
-let $teacher12;
-
   function selectFunction(teacherid) {
-    //alert(teacherid)
-    dia= String(teacherid).substring(7, 9)
-    hora= String(teacherid).substring(9, 11)
-    teacherid = document.getElementById(teacherid).value;
-    
 
-    const url = `/students/52/${teacherid}/${dia}/${hora}/assingTeacher`
-    alert(url)
-    document.getElementById("url12").href = url;
+    date= String(teacherid).substring(7, 17)
+    time= String(teacherid).substring(17, 19)
+    teacherid = document.getElementById(teacherid).value;
+    studenId = document.getElementById("studenId").value;
+    //alert(teacherid)
+    const url = `/students/${studenId}/${teacherid}/${date}/${time}/assingTeacher`
+   
+    document.getElementById("url"+date+time).href = url;
 
    // const specialtyId = $teacher12.val();
   };

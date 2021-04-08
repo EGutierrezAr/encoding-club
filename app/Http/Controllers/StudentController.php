@@ -296,7 +296,7 @@ class StudentController extends Controller
 
                 for($date = $start_date; $date->lte($end_date); $date->addDay()) { 
 
-                /* METER VALIDACIÓN DE CUANTOS DIAS SE CALCULA LA PROXIMA CITA, DEPENDIENDO DE LA DURACIÓN DEL CURSO*/ 
+/* METER VALIDACIÓN DE CUANTOS DIAS SE CALCULA LA PROXIMA CITA, DEPENDIENDO DE LA DURACIÓN DEL CURSO*/ 
 
                     $dateCarbon = new Carbon($date);
                     $iday = $dateCarbon->dayOfWeek;
@@ -339,9 +339,30 @@ class StudentController extends Controller
     	return back()->with(compact('notification'));
     }
 
-    public function assingTeacher (Request $request, $id, $teacherid) {
-        //dd($id);
-        dd($teacherid);
+    public function assingTeacher (Request $request, $id, $teacherid, $date, $time) {
+
+        if ($teacherid == "-1"){
+            $error ='No ha seleccionado un profesor';
+            return back()->with(compact('error'));
+        } else {
+
+            $dateCarbon = new Carbon($date);
+
+            appointment::updateOrCreate(
+                [
+                'student_id' => $id,
+                'date' => $dateCarbon->format('Y-m-d'),
+                'time_start' => $time.':00:00',
+
+                ], [
+                'teacher_id' => $teacherid
+                ]
+            );
+            
+            $notification = 'Se asignado correctamente el profesor ';
+            return back()->with(compact('notification'));
+        }
+
     }
     
     private function updateOrCreateAppoitment ($userId, $student, $date, $timeStart, $timeEnd)
@@ -401,6 +422,7 @@ class StudentController extends Controller
         $end_date = Carbon::today()->addDays(20);
 
         $teachers=[];
+        $teacherNameDisplay=[];
 
         $datesTime = [];
         $datesTime2 = [];
@@ -417,6 +439,7 @@ class StudentController extends Controller
               dd($datesAvailable);
             }*/
             
+            
 
             if (!empty($datesAvailable['morning']) || !empty($datesAvailable['afternoon'])) {
                
@@ -431,8 +454,9 @@ class StudentController extends Controller
                    
                     if($teacherName != null)
                         $teacherNameDisplay[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teacherName', $teacherName);
-                    else
+                    /*else
                     $teacherNameDisplay=null;
+                    */
                     
                 }
                 
@@ -444,13 +468,18 @@ class StudentController extends Controller
                     $teachers[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teachers', $teacher);
 
                     $teacherName = $scheduleService->getTeacherAssigned($studentId, $date->format('Y-m-d'), $start = new Carbon($tim['start']), $end = new Carbon($tim['end']));
-                    if($teacherName != null)
+                    
+
+                    if($teacherName != null){
                         $teacherNameDisplay[] = Arr::add(['days' => $date->format('d-m-Y').$tim['start']], 'teacherName', $teacherName);
-                    else
+                        
+                    }/*else{
                         $teacherNameDisplay=null;
+                    }*/
                 }
 
-                   // dd("a", $teacherNameDisplay);
+                
+                
    
                
                 
@@ -476,7 +505,7 @@ class StudentController extends Controller
             }
         } 
 
-        
+        //dd($teacherNameDisplay);
         
         $student = User::students()->findOrFail($id);
         //$nameUser = User::teachers()->findOrFail($id)->name;

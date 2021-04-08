@@ -702,6 +702,9 @@ The above copyright notice and this permission notice shall be included in all c
   </div-->
   <!--   Core JS Files   -->
 
+  <script src="{{ asset('/js/appointments/create.js') }}"></script>
+
+  
   <script src="{{ asset('js/core/jquery.min.js') }}"></script>
   <script src="{{ asset('js/core/popper.min.js') }}"></script>
   <script src="{{ asset('js/core/bootstrap-material-design.min.js') }}"></script>

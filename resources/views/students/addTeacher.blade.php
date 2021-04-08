@@ -9,12 +9,20 @@
                 <div class="card">
                     <div class="card-header card-header-primary">
                         <h4 class="card-title ">Asignación de profesor para {{ $student->name }} </h4>
+                        <input type="hidden" id="studenId" value="{{ $student->id }}">
                         <div class="col text-right">
-                        <a href="{{ url('students/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
                         </div>
                     </div>
                     <div class="card-body">
-                    @if(session('notification'))
+                    @if(session('error'))
+                    <div class="alert alert-warning">
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <i class="material-icons">close</i>
+                        </button>
+                        <span>
+                        <b> Error - </b>{{ session('error')}} </span>
+                    </div>
+                    @elseif(session('notification'))
                     <div class="alert alert-success">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <i class="material-icons">close</i>
@@ -70,8 +78,9 @@
                                     @endif
                                     </td>
                                     <td>
-                                    <div class="form-group col-md-9">
-                                    <select name="teacher" id="teacher{{ Str::substr($time['days'],0,2) }}{{ Str::substr($tim['start'],0,2) }}"   onchange="selectFunction('teacher{{ Str::substr($time['days'],0,2) }}{{ Str::substr($tim['start'],0,2) }}')" class="form-control" required>
+                                    <div class="form-group col-md-10">
+                                    <select name="teacher" id="teacher{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}"   onchange="selectFunction('teacher{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}')" class="form-control" required>
+                                    <option selected>Seleccione un profesor</option>
                                     @if($teachers != null)
                                         @foreach($teachers as $teacher)  
                                             @foreach($teacher['teachers'] as $tea)  
@@ -88,15 +97,14 @@
                                     </td>
                                     <td class="td-actions text-center">
                                     <form action="">
-                                        <a href="#"  id="url{{ Str::substr($time['days'],0,2) }}" class="btn btn-primary btn-link btn-sm">
+                                        <a href="-1/-1/-1/assingTeacher"  id="url{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}" class="btn btn-primary btn-link btn-sm">
                                          <i class="material-icons"  title="Horario" >edit_calendar</i></a>
                                     </form>
                                     </td>
                                 </tr>
                                 @endforeach
                             @endforeach
-                           
-                           
+
                             </tbody>
                         </table>
                     </div>
@@ -108,5 +116,6 @@
 
 @endsection
 
+@section('scripts')
 
-<script src="{{ asset('/js/appointments/create.js') }}"></script>
+@endsection

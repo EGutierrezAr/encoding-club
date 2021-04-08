@@ -81,7 +81,7 @@ class ScheduleService implements ScheduleServiceInterface
             ->where('teacher_id', '!=', null)
         	->get(['teacher_id']);
 
-            //dd ($teacher);
+        //dd ($teacher);
 
         if (count($teacher) > 0){
             $user = User::findOrFail($teacher[0]->teacher_id);

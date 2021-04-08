@@ -460,9 +460,13 @@
 }
 
 .brand .n-logo-ecoding {
-  max-width: 250px;
+  max-width: 220px;
   margin-bottom: 0px;
   
+}
+.brand .n-logo1-ecoding {
+  max-width: 220px;
+  margin-top: -10px;
 }
 
 .invision-logo {
