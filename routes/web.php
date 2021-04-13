@@ -36,6 +36,9 @@ Route::get('students/{id}/appointment', 'StudentController@appointment');
 Route::get('students/{id}/{teacherid}/{date}/{time}/assingTeacher', 'StudentController@assingTeacher');
 
 
+// Dashboar
+Route::resource('dashboard', 'DashboardController');
+
 // Techers
 Route::resource('teachers', 'TeacherController');
 

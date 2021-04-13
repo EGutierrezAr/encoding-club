@@ -32,7 +32,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                             <label form="specialties">Módulo</label>
-                                <select name="module"  id="module" class="form-control "  >
+                                <!--select name="module"  id="module" class="form-control "  -->
+                                <select class="form-control selectpicker" data-style="btn btn-link" id="module" name="module">
                                     <option value="1">Básico</option>
                                     <option value="2">Medio</option>
                                     <option value="3">Avanzado</option>
@@ -42,7 +43,8 @@
                         <div class="col-md-4">
                             <div class="form-group">
                             <label form="specialties">Clase</label>
-                                <select name="class"  id="class" class="form-control "  >
+                                <select class="form-control selectpicker" data-style="btn btn-link"  id="class" name="class">
+                                <!--select name="class"  id="class" class="form-control "  -->
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

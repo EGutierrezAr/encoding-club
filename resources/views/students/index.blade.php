@@ -77,7 +77,7 @@
                             <i class="material-icons">close</i>
                             </button>
                             <a href="{{ url('students/'.$student->id.'/appointment') }}" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons"  title="Clase" >edit_calendar</i></a>
+                            <i class="material-icons"  title="Asignar profesor" >people</i></a>
                           </form>
                         </td>
                       </tr>

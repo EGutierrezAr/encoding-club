@@ -77,10 +77,11 @@
                                                 @endforeach
                                     @endif
                                     </td>
-                                    <td>
-                                    <div class="form-group col-md-10">
-                                    <select name="teacher" id="teacher{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}"   onchange="selectFunction('teacher{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}')" class="form-control" required>
-                                    <option selected>Seleccione un profesor</option>
+                                    <td class="td-actions text-left">
+                                    <div class="form-group col-md-9">
+                                    <!--select name="teacher" id="teacher{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}"   onchange="selectFunction('teacher{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}')" class="form-control" required-->
+                                    <select class="form-control selectpicker" data-style="btn btn-link" name="teacher" id="teacher{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}"   onchange="selectFunction('teacher{{ $time['days'] }}{{ Str::substr($tim['start'],0,2) }}')" required>
+                                    <option value="-1" selected>Seleccione un profesor</option>
                                     @if($teachers != null)
                                         @foreach($teachers as $teacher)  
                                             @foreach($teacher['teachers'] as $tea)  

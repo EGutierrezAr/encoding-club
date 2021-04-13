@@ -7,9 +7,11 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header card-header-primary">
-                <h4 class="card-title ">Profesores <a href="{{ url('teachers/create') }}" class="btn btn-primary btn-round">Nuevo</a></h4>
+                <h4 class="card-title ">Profesores </h4>
                 <p class="card-category"> Lista de todos los profersores</p>
-                
+                <div class="col text-right">
+                <a href="{{ url('teachers/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
+                </div>
               </div>
               <div class="card-body">
                 @if(session('notification'))

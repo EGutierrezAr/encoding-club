@@ -15,7 +15,6 @@
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 -->
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,107 +38,99 @@
   <link href="./assetsidx/demo/demo.css" rel="stylesheet" />
 </head>
 
+
 <body class="index-page sidebar-collapse">
-  <!-- Navbar -->
+<!-- Navbar -->
 
-  
-  <div class="content-center brand">
-    
+<nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
     <div class="container">
-    
-    <nav class="navbar navbar-expand-lg bg-primary fixed-top navbar-transparent " color-on-scroll="400">
-  <div class="content-left brand">
-       <img class="n-logo-ecoding" src="./img/logo1.png"  alt="">
-  </div>
-  
 
-      <!--div class="navbar-translate">
-        <a class="navbar-brand" href="https://demos.creative-tim.com/now-ui-kit/index.html" rel="tooltip" title="Designed by Invision. Coded by Creative Tim" data-placement="bottom" target="_blank">
-          EncodingClub
-        </a>
-        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-bar top-bar"></span>
-          <span class="navbar-toggler-bar middle-bar"></span>
-          <span class="navbar-toggler-bar bottom-bar"></span>
-        </button>
-      </div-->
-
-      <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assetsidx/img/blurred-image-1.jpg">
-     
-      
-        <ul class="navbar-nav">
-          
-         <li class="nav-item">
-            <button class="nav-link btn btn-neutral" data-toggle="modal" data-target="#myModal">
-              <i class="now-ui-icons arrows-1_share-66"></i>
-              Reserva tu Clase de prueba <b>GRATIS</b>
+          <div class="navbar-translate">
+            <!--div class="content-left brand">
+                  <img class="n-logo-ecoding" src="./img/logo1.png"  alt="">
+            </div-->
+            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-bar top-bar"></span>
+              <span class="navbar-toggler-bar middle-bar"></span>
+              <span class="navbar-toggler-bar bottom-bar"></span>
             </button>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Plan de Estudios</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
-              <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-              <p>Quienes somos</p>
-            </a>
-          </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
-              <i class="now-ui-icons design_app"></i>
-              <p>Components</p>
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
-              <a class="dropdown-item" href="./index.html">
-                <i class="now-ui-icons business_chart-pie-36"></i> All components
-              </a>
-              <a class="dropdown-item" target="_blank" href="https://demos.creative-tim.com/now-ui-kit/docs/1.0/getting-started/introduction.html">
-                <i class="now-ui-icons design_bullet-list-67"></i> Documentation
-              </a>
-            </div>
-          </li>
+          </div>
+   
+          <div class="collapse navbar-collapse justify-content-end" id="navigation" data-nav-image="./assets/img/blurred-image-1.jpg">
+            <ul class="navbar-nav">
+            <li class="nav-item">
+                <button class="nav-link btn btn-neutral" data-toggle="modal" data-target="#myModal">
+                  <i class="now-ui-icons arrows-1_share-66"></i>
+                  Reserva tu Clase de prueba <b>GRATIS</b>
+                </button>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)" onclick="scrollToPlain()">
+                  <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                  <p>Plan de Estudios</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:void(0)" onclick="scrollToDownload()">
+                  <i class="now-ui-icons arrows-1_cloud-download-93"></i>
+                  <p>Quienes somos</p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a href="#" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink1" data-toggle="dropdown">
+                  <i class="now-ui-icons design_app"></i>
+                  <p>Components</p>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink1">
+                  <a class="dropdown-item" href="./index.html">
+                    <i class="now-ui-icons business_chart-pie-36"></i> All components
+                  </a>
+                  <a class="dropdown-item" target="_blank" href="https://demos.creative-tim.com/now-ui-kit/docs/1.0/getting-started/introduction.html">
+                    <i class="now-ui-icons design_bullet-list-67"></i> Documentation
+                  </a>
+                </div>
+              </li>
 
-          <!--li class="nav-item">
-            <a class="nav-link btn btn-neutral" href="https://www.creative-tim.com/product/now-ui-kit-pro" target="_blank">
-              <i class="now-ui-icons arrows-1_share-66"></i>
-              <p>Upgrade to PRO</p>
-            </a>
-          </li-->
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
-              <i class="fab fa-twitter"></i>
-              <p class="d-lg-none d-xl-none">Twitter</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
-              <i class="fab fa-facebook-square"></i>
-              <p class="d-lg-none d-xl-none">Facebook</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
-              <i class="fab fa-instagram"></i>
-              <p class="d-lg-none d-xl-none">Instagram</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <button class="nav-link btn btn-neutral" data-toggle="modal" data-target="#myModalLogin">
-              <i class="now-ui-icons arrows-1_share-66"></i>
-              <b>LOGIN</b>
-            </button>
-          </li>
-        </ul>
-      </div>
+              <!--li class="nav-item">
+                <a class="nav-link btn btn-neutral" href="https://www.creative-tim.com/product/now-ui-kit-pro" target="_blank">
+                  <i class="now-ui-icons arrows-1_share-66"></i>
+                  <p>Upgrade to PRO</p>
+                </a>
+              </li-->
+              <li class="nav-item">
+                <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com/CreativeTim" target="_blank">
+                  <i class="fab fa-twitter"></i>
+                  <p class="d-lg-none d-xl-none">Twitter</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com/CreativeTim" target="_blank">
+                  <i class="fab fa-facebook-square"></i>
+                  <p class="d-lg-none d-xl-none">Facebook</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com/CreativeTimOfficial" target="_blank">
+                  <i class="fab fa-instagram"></i>
+                  <p class="d-lg-none d-xl-none">Instagram</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <button class="nav-link btn btn-neutral" data-toggle="modal" data-target="#myModalLogin">
+                  <i class="now-ui-icons arrows-1_share-66"></i>
+                  <b>LOGIN</b>
+                </button>
+              </li>
+            </ul>
+          </div>
+
     </div>
   </nav>
 
-   <!-- Modal Login -->
-   <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <form method="POST" action="{{ route('login') }}">
+  <!-- Modals -->
+     <!-- Modal Login -->
+    <div class="modal fade" id="myModalLogin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <form method="POST" action="{{ route('login') }}">
         @csrf
             <div class="modal-dialog">
             <div class="modal-content">
@@ -207,10 +198,10 @@
     @endif
     @endforeach
   @elseif (session('notification')) 
-  <script>
-  $(document).ready(function(){
-		$("#myModalSuccess").modal('show');
-	});
+    <script>
+    $(document).ready(function(){
+      $("#myModalSuccess").modal('show');
+    });
     </script>
   @endif
 
@@ -338,17 +329,21 @@
         </div>
         </div>
     </div>
+  <!-- End Modals -->
 
-  <!-- End Navbar -->
+
+    <!-- End Navbar -->
   <div class="wrapper">
     <div class="page-header clear-filter" filter-color="orange">
       <div class="page-header-image" data-parallax="true" style="background-image:url('./assetsidx/img/niña.jpg');">
       </div>
+      
       <div class="container">
+      
         <div class="content-center brand">
-          <img class="n-logo" src="./assetsidx/img/now-logo.png" alt="">
-          
-          <img class="n-logo" src="./assetsidx/img/creative-tim-white-slim2.png" alt="">
+          <!--img class="n-logo" src="./assetsidx/img/now-logo.png" alt=""-->
+
+          <img class="n-logo-ecoding" src="./img/logo1.png"  alt="">
           
           <h1 class="h1-seo">Programación especializada para niños.</h1>
           <h3>“Las especies que sobreviven no son las más fuertes, sino aquellas que se adaptan mejor al cambio."</h3>
@@ -392,7 +387,7 @@
     </div>
 
     <!-- Container Tabs --> 
-    <div class="section section-tabs">
+    <div class="section section-plain" >
       <div class="container">
         <div class="row">
           <div class="col-md-10 ml-auto col-xl-12 mr-auto">
@@ -521,10 +516,6 @@
       </div>
     </footer>
   </div>  
-
-
-
-  
   
   <!--   Core JS Files   -->
   <script src="./assetsidx/js/core/jquery.min.js" type="text/javascript"></script>
@@ -540,37 +531,19 @@
   <script src="./assetsidx/js/now-ui-kit.js?v=1.3.0" type="text/javascript"></script>
 
   <script>
-
-/*-
-	$(document).ready(function(){
-		$("#myModal").modal('show');
-	});-*/
-</script>
-
-  <script>
-
-function showModal() {
-
-    $(document).ready(function(){
-		$("#myModal").modal('show');
-	});
-}
-
-
     $(document).ready(function() {
-      // the body of this function is in assetsidx/js/now-ui-kit.js
+      // the body of this function is in assets/js/now-ui-kit.js
       nowuiKit.initSliders();
     });
 
-    function scrollToDownload() {
+    function scrollToPlain() {
 
-      if ($('.section-download').length != 0) {
+      if ($('.section-plain').length != 0) {
         $("html, body").animate({
-          scrollTop: $('.section-download').offset().top
+          scrollTop: $('.section-plain').offset().top
         }, 1000);
       }
     }
-
   </script>
 </body>
 

@@ -372,6 +372,52 @@
     <div class="col-lg-6 col-md-12">
         <div class="card">
         <div class="card-header card-header-warning">
+            <h4 class="card-title">Próximas clases</h4>
+            <p class="card-category">Para el módulo de programación en phyton</p>
+        </div>
+        <div class="card-body table-responsive">
+            <table class="table table-hover">
+                <thead class="text-warning">
+                    <th>Día</th>
+                    <th>Hora inicio</th>
+                    <th>Hora fin</th>
+                    <th>Profesor asignado</th>
+                </thead>
+                <tbody>
+                    @foreach($datesTime as $time)  
+                        @foreach($time['time'] as $tim)  
+                        <tr>
+                            <td>
+                            {{  $time['days'] }} 
+                            </td>
+                            <td>
+                                {{  $tim['start'] }} 
+                            </td>
+                            <td>
+                                {{   $tim['end'] }} 
+                            </td>
+                            <td>
+                            @if($teacherNameDisplay != null)
+                                @foreach($teacherNameDisplay as $teacher)  
+                                        @if ($time['days'].$tim['start'] == $teacher['days'])
+    
+                                            {{ $teacher['teacherName']->name }}
+    
+                                        @endif
+                                        @endforeach
+                            @endif
+                            </td>
+                            </tr>
+                        @endforeach
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    <!--div class="col-lg-6 col-md-12">
+        <div class="card">
+        <div class="card-header card-header-warning">
             <h4 class="card-title">Employees Stats</h4>
             <p class="card-category">New employees on 15th September, 2016</p>
         </div>
@@ -412,8 +458,8 @@
             </table>
         </div>
         </div>
-    </div>
-    </div>
+    </div-->
+</div>
 </div>
 </div>
 @endsection

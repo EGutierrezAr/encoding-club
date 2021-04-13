@@ -11,6 +11,7 @@
                             <p class="card-category">Complete los datos del estudiante</p>
                             <a href="{{ url('students') }}" class="btn btn-secondary pull-right" >Cancelar y volver</a>
                         </div>
+                        
                         <div class="card-body">
                             @if($errors->any())
                             <div class="alert alert-warning">
@@ -27,12 +28,21 @@
                             @csrf
                             <div class="row">
                                 <div class="col-md-4">
-                                <div class="form-group">
+                                <!--div class="form-group">
                                     <label form="specialties">Estatus</label>
                                     <select name="status"  id="status" class="form-control "  >
-                                        <option value="1">Prueba</option>
+                                        <option value="1">Prueba1</option>
                                         <option value="2">Activo</option>
                                         <option value="3">Inactivo</option>
+                                    </select>
+                                </div-->
+
+                                 <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Estatus</label>
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
+                                    <option value="1">Prueba</option>
+                                    <option value="2">Activo</option>
+                                    <option value="3">Inactivo</option>
                                     </select>
                                 </div>
                                 </div>
@@ -85,12 +95,20 @@
                                 </div>
                                 </div>
                                 <div class="col-md-4">
-                                <div class="form-group">
+                                <!--div class="form-group">
                                     <label form="specialties">Nivel</label>
                                     <select name="level"  id="level" class="form-control "  >
                                         <option value="1">Básico</option>
                                         <option value="2">Medio</option>
                                         <option value="3">Avanzado</option>
+                                    </select>
+                                </div-->
+                                <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Nivel</label>
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
+                                    <option value="1">Básico</option>
+                                    <option value="2">Medio</option>
+                                    <option value="3">Avanzado</option>
                                     </select>
                                 </div>
                                 </div>
@@ -106,6 +124,8 @@
                                 </div>
                                 </div>
                             </div>
+
+                            
                             <button type="submit" class="btn btn-primary pull-right">Guardar</button>
                             <div class="clearfix"></div>
                             </form>

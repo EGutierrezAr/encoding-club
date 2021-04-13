@@ -340,7 +340,7 @@ class StudentController extends Controller
     }
 
     public function assingTeacher (Request $request, $id, $teacherid, $date, $time) {
-
+//dd($teacherid);
         if ($teacherid == "-1"){
             $error ='No ha seleccionado un profesor';
             return back()->with(compact('error'));

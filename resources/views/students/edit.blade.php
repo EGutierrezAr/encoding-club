@@ -7,9 +7,8 @@
             <div class="col-md-8">
                 <div class="card">
                 <div class="card-header card-header-primary">
-                    <h4 class="card-title">Editar estudiante</h4>
+                    <h4 class="card-title">Editar estudiantes</h4>
                     <p class="card-category">Complete los datos del estudiante</p>
-                    <a href="{{ url('students') }}" class="btn btn-secondary pull-right" >Cancelar y volver</a>
                 </div>
                 <div class="card-body">
                     <form action="{{ url('students/'.$student->id) }}" method="post">

@@ -65,7 +65,7 @@
                           <div class="col-md-10">
                             <div class="form-group">
                               <!--div class="col"-->
-                              <select class="form-control" name="morning_start[]">
+                              <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1" name="morning_start[]">
                                 @for ($i=8; $i<=11 ; $i++)
                                   <option value="{{ ($i<10 ? '0' : '') . $i }}:00" 
                                   @if($i.':00 AM' == $workDay->morning_start) selected @endif>
@@ -79,7 +79,7 @@
                           <td>
                           <div class="col-md-10">
                             <div class="form-group">
-                              <select class="form-control" name="morning_end[]">
+                            <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1" name="morning_end[]">
                                 @for ($i=8; $i<=12; $i++)
                                   <option value="{{ ($i<10 ? '0' : '') . $i }}:00"
                                     @if($i.':00 AM' == $workDay->morning_end) 
@@ -99,7 +99,7 @@
                         <div class="row">
                           <div class="col-md-10">
                             <div class="form-group">
-                              <select class="form-control" name="afternoon_start[]">
+                            <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1" name="afternoon_start[]">
 
                                   <option value="12:00"
                                     @if($i.':00 PM' == $workDay->afternoon_start) selected @endif>
@@ -119,7 +119,8 @@
                       <td>
                           <div class="col-md-10">
                             <div class="form-group">
-                              <select class="form-control" name="afternoon_end[]">
+                              <!--select class="form-control" name="afternoon_end[]"-->
+                              <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1" name="afternoon_end[]">
                                   <option value="12:00"
                                     @if($i.':00 PM' == $workDay->afternoon_start) selected @endif>
                                    12:00 PM
