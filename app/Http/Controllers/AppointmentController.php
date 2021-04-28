@@ -30,6 +30,8 @@ class AppointmentController extends Controller
         $notification ='ERROR';
         $this->validate($request, $rules, $messages, compact('notification'));
 
+        //dd($request);
+
         $appointment = new Appointment();
         $appointment->parent_email = $request->input('parent_email');
         $appointment->parent_name = $request->input('parent_name');
@@ -37,6 +39,7 @@ class AppointmentController extends Controller
         $appointment->student_name = $request->input('student_name');
         $appointment->student_age = $request->input('student_age');
         $appointment->status = 'reservada';
+        $appointment->type = 'prueba';
         $appointment->save();
 
         $notification = 'Acabas de reservar tu Clases de Prueba';

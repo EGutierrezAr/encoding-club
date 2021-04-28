@@ -6,13 +6,36 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header card-header-primary">
-                <h4 class="card-title ">Profesores </h4>
-                <p class="card-category"> Lista de todos los profersores</p>
-                <div class="col text-right">
-                <a href="{{ url('teachers/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
-                </div>
-              </div>
+                 <!--div class="card-header card-header-primary">
+                  <h4 class="card-title ">Profesores </h4>
+                  <p class="card-category"> Lista de todos los profersores</p>
+                  <div class="col text-right">
+                  <a href="{{ url('teachers/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
+                </div--> 
+                <nav class="navbar navbar-expand-lg bg-primary">
+                  <div class="container">
+                      <span class="navbar-text">
+                      <a class="navbar-brand" href=javascript:;">Lista de profesores</a>
+                      </span>
+                      <span class="navbar-text">
+                      <a href="{{ url('teachers/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
+                      </span>
+
+                        <div class="collapse navbar-collapse">
+                            <form class="form-inline ml-auto" action="{{ route('teachers/find') }}" method="GET">
+                            @csrf()
+                            @method('find')
+                                <div class="form-group no-border">
+                                  <input type="text" id="search" name="search"  class="form-control" placeholder="Search">
+                                </div>
+                                <button type="submit" class="btn btn-just-icon btn-round">
+                                  <i class="material-icons">search</i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+
               <div class="card-body">
                 @if(session('notification'))
                 <div class="alert alert-success">

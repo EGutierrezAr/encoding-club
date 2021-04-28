@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Support\Arr; 
+use Illuminate\Support\Facades\Hash;
 
 class TeacherController extends Controller
 {
@@ -16,6 +18,15 @@ class TeacherController extends Controller
     {
         $teachers = User::teachers()->paginate(5);
         //$teachers = User::teachers()->get(); //ALL
+        return view('teachers.index',compact('teachers'));
+    }
+
+    
+    public function find(Request $request)
+    {
+        //dd("entre");
+        $search = $request->input('search');
+        $teachers = User::teachers()->where('name',  'LIKE', "%{$search}%")->paginate(5); 
         return view('teachers.index',compact('teachers'));
     }
 
@@ -60,13 +71,14 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
+       // dd($request);
         $this->performValidation($request);
 
         User::create(
-            $request->only('name','email','password','last_name','phone','address','city','level','status','observation')
+            $request->only('name','email','last_name','phone','address','city','level','status','observation')
             + [
                 'role' => 'teacher',
-                'password' => bcrypt($request->input('password')),
+                'password' => Hash::make($request->input('password')),
             ]
         );
 

@@ -16,8 +16,13 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
 
-            $table->integer('module');
-            $table->integer('class');
+            // fk Levels
+            $table->unsignedInteger('level_id')->nullable();
+            $table->foreign('level_id')->references('id')->on('levels');
+   
+            // fk Levels
+            $table->unsignedInteger('lesson_id')->nullable();
+            $table->foreign('lesson_id')->references('id')->on('lessons');
 
             $table->string('title')->nullable();
             $table->string('description')->nullable();

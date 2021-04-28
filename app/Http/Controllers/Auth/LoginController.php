@@ -35,6 +35,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
+        //dd("entreq");
         $this->middleware('guest')->except('logout');
     }
 }

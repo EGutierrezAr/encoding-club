@@ -1,18 +1,65 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
     <div class="content">
       <div class="container-fluid">
         <div class="row">
+
+
+        <!--div class="col-md-4">
+              <form class="navbar-form" action="{{ route('student/find') }}" method="GET">
+              @csrf()
+              @method('find')
+              <div class="input-group no-border text-right">
+                <input type="text" id="search" name="search"  class="form-control" placeholder="Nombre...">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+              </div>
+            </form>
+          </div-->
+     
+
+
           <div class="col-md-12">
             <div class="card">
-              <div class="card-header card-header-primary">
+              <!--div class="card-header card-header-primary">
                 <h4 class="card-title ">Estudiantes </h4>
                 <p class="card-category"> Lista de todos los estudiantes activos</p>
                 <div class="col text-right">
                 <a href="{{ url('students/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
                 </div>
-              </div>
+              </div-->
+              <nav class="navbar navbar-expand-lg bg-primary">
+                <div class="container">
+                    <span class="navbar-text">
+                    <a class="navbar-brand" href=javascript:;">Lista de estudiantes</a>
+                    </span>
+                    <span class="navbar-text">
+                    <a href="{{ url('students/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
+                    </span>
+
+                      <div class="collapse navbar-collapse">
+                          <form class="form-inline ml-auto" action="{{ route('student/find') }}" method="GET">
+                          @csrf()
+                          @method('find')
+                              <div class="form-group no-border">
+                                <input type="text" id="search" name="search"  class="form-control" placeholder="Search">
+                              </div>
+                              <button type="submit" class="btn btn-just-icon btn-round">
+                                <i class="material-icons">search</i>
+                              </button>
+                          </form>
+                      </div>
+                  </div>
+              </nav>
+
+
+
               <div class="card-body">
                 @if(session('notification'))
                 <div class="alert alert-success">

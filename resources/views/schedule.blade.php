@@ -77,7 +77,7 @@
                           </div>
                           </td>
                           <td>
-                          <div class="col-md-10">
+                          <div class="col-md-12">
                             <div class="form-group">
                             <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1" name="morning_end[]">
                                 @for ($i=8; $i<=12; $i++)

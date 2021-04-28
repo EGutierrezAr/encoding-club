@@ -26,11 +26,11 @@ class CreateAppointmentsTable extends Migration
             $table->time('time_end')->nullable();
 
             // fk teacher
-            $table->unsignedInteger('student_id')->nullable();;
+            $table->unsignedInteger('student_id')->nullable();
             $table->foreign('student_id')->references('id')->on('users');
 
             // fk teacher
-            $table->unsignedInteger('teacher_id')->nullable();;
+            $table->unsignedInteger('teacher_id')->nullable();
             $table->foreign('teacher_id')->references('id')->on('users');
             
             $table->string('status')->nullable(); //reservada, planificada, atendida

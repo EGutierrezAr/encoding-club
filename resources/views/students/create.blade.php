@@ -39,7 +39,7 @@
 
                                  <div class="form-group">
                                     <label for="exampleFormControlSelect1">Estatus</label>
-                                    <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="status"  name="status">
                                     <option value="1">Prueba</option>
                                     <option value="2">Activo</option>
                                     <option value="3">Inactivo</option>
@@ -105,10 +105,10 @@
                                 </div-->
                                 <div class="form-group">
                                     <label for="exampleFormControlSelect1">Nivel</label>
-                                    <select class="form-control selectpicker" data-style="btn btn-link" id="exampleFormControlSelect1">
-                                    <option value="1">Básico</option>
-                                    <option value="2">Medio</option>
-                                    <option value="3">Avanzado</option>
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="level" name="level">
+                                    @foreach($levels as $level)
+                                    <option value="{{ $level->id }}" @if(old('level.id')== $level->id) selected @endif>{{ $level->level.' - '.$level->course}}</option>
+                                    @endforeach
                                     </select>
                                 </div>
                                 </div>

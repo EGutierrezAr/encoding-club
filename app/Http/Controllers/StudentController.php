@@ -7,7 +7,12 @@ use App\Interfaces\ScheduleServiceInterface;
 use App\User;
 use App\WorkDay;
 use App\Appointment;
+use App\Level;
+use App\Lessons;
+use App\Classes;
 use Illuminate\Support\Arr; 
+use Illuminate\Support\Facades\Hash;
+
 
 use Carbon\Carbon;
 
@@ -31,6 +36,14 @@ class StudentController extends Controller
         return view('students.index',compact('students'));
     }
 
+    public function find(Request $request)
+    {
+        //dd("entre");
+        $search = $request->input('search');
+        $students = User::students()->where('name',  'LIKE', "%{$search}%")->paginate(5); 
+        return view('students.index',compact('students'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -38,7 +51,12 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        //dd("entreS");
+        $levels = Level::all();
+
+        //dd($levels);
+
+        return view('students.create',compact('levels'));
     }
 
     private function performValidation(Request $request){
@@ -87,12 +105,15 @@ class StudentController extends Controller
 
         $this->validate($request, $rules);
 
-        $password = $request->input('password');
+        //dd($request);
+
+        //$password = $request->input('password');
         $user = User::create(
-            $request->only('name','email','password','last_name','phone','address','city','level','status','observation')
+            $request->only('name','email','last_name','phone','address','city','level','status','observation')
             + [
                 'role' => 'student',
-                'password' => bcrypt($password),
+                //'password' => bcrypt($password),
+                'password' => Hash::make($request->input('password')),
             ]
         );
 
@@ -148,8 +169,13 @@ class StudentController extends Controller
      */
     public function edit(User $student)
     {
-        //dd("entre");
-        return view('students.edit', compact('student'));
+        //dd($student->id ==null);
+        if($student->id ==null)
+        $student = auth()->user();
+         
+        $levels = Level::all();
+
+        return view('students.edit', compact('student','levels'));
     }
 
     /**
@@ -162,6 +188,7 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
     
+        
         $rules = [
             'name' => 'required|min:3',
             /*'last_name' => 'nullable|min:3',
@@ -182,25 +209,36 @@ class StudentController extends Controller
         $user->fill($data);
         $user->save();  //UPDATE
 
+
+        if ($user->status == '2'){
+        
+       
+            $nclass = Level::where('id',$user->level)->get('class_number');
+            //dd($nclass);
+              
+              for ($i=1; $i<=$nclass[0]->class_number; ++$i){
+                
+                $idLesson = Lessons::where('level_id',$user->level)
+                    ->where('lesson_number',$i)
+                    ->get('id')->first();
+
+                //dd($idLesson->id);
+
+                Classes::updateOrCreate(
+                    [
+                        'student_id'=> $user->id,
+                        'level_id' => $user->level,
+                        'lesson_id' => $idLesson['id']
+                    ], [
+                        'status' => 0
+                    ]
+                );
+              }
+                
+        }
+
         $notification = "El estudiate se ha registrado correctamente.";
         return redirect('/students')->with(compact('notification')); 
-
-        /*
-        $student->name = $request->input('name');
-        //$student->email = $request->input('email');
-        //$student->password = $request->input('password');
-        $student->last_name = $request->input('last_name');
-        $student->phone = $request->input('phone');
-        $student->address = $request->input('address');
-        $student->city = $request->input('city');
-        $student->level = $request->input('level');
-        $student->role = $request->input('role');
-        $student->status = $request->input('status');
-        $student->observation = $request->input('observation');
-        $student->save();
-
-        $notification = "El estudiate se ha actualizado correctamente.";
-        return redirect('/students')->with(compact('notification')); */
     }
 
     /**
@@ -329,7 +367,8 @@ class StudentController extends Controller
 
                     }
                 }
-                //dd($days);
+                
+
             }
 	    } 
         

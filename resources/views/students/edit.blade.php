@@ -16,10 +16,18 @@
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-4">
-                        <div class="form-group">
+                        <!--div class="form-group">
                             <label class="bmd-label-floating">Estatus</label>
                             <input type="text" name="status" value="{{ old('status', $student->status) }}"  class="form-control">
-                        </div>
+                        </div-->
+                        <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Estatus</label>
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="status"  name="status">
+                                    <option value="1" @if( $student->status == 1) selected @endif>PRUEBA</option>
+                                    <option value="2" @if( $student->status == 2) selected @endif>ACTIVO</option>
+                                    <option value="3" @if( $student->status == 3) selected @endif>INACTIVO</option>
+                                    </select>
+                                </div>
                         </div>
                         <div class="col-md-4">
                         <div class="form-group">
@@ -65,8 +73,12 @@
                         </div>
                         <div class="col-md-4">
                         <div class="form-group">
-                            <label class="bmd-label-floating">Nivel</label>
-                            <input type="text" name="level" value="{{ old('level', $student->level) }}" class="form-control">
+                            <label for="exampleFormControlSelect1">Nivel</label>
+                            <select class="form-control selectpicker" data-style="btn btn-link" id="level" name="level">
+                            @foreach($levels as $level)
+                            <option value="{{ $level->id }}" @if( $student->level == $level->id) selected @endif>{{ $level->level.' - '.$level->course}}</option>
+                            @endforeach
+                            </select>
                         </div>
                         </div>
                     </div>
@@ -75,9 +87,8 @@
                         <div class="form-group">
                             <label>Observaciones</label>
                             <div class="form-group">
-                            <label class="bmd-label-floating"> Observaciones relacionadas del alumno.</label>
-                            <textarea class="form-control" name="observation" value="{{ old('observation', $student->observation) }}"  rows="5"></textarea>
-                            <input type="text" name="observation" value="{{ old('observation', $student->observation) }}" class="form-control">
+                            <!--label class="bmd-label-floating"> Observaciones relacionadas del alumno.</label-->
+                            <textarea class="form-control" name="observation" value="{{ old('observation', $student->observation) }}"  rows="5"> {{ $student->observation }}</textarea>
                             </div>
                         </div>
                         </div>

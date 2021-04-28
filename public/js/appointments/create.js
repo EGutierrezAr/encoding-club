@@ -13,3 +13,12 @@
 
    // const specialtyId = $teacher12.val();
   };
+
+  function selectClassByLevel() {
+    levelId = document.getElementById("level" ).value;
+    //title = document.getElementById("title" ).value;
+
+    //window.location = `/files/${levelId}/${title}/indexLevel`;
+    window.location = `/files/${levelId}/indexLevel`;
+
+  };

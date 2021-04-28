@@ -41,6 +41,14 @@
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Nivel</label>
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="level" name="level">
+                                    @foreach($levels as $level)
+                                    <option value="{{ $level->id }}" @if(old('level.id')== $level->id) selected @endif>{{ $level->level.' - '.$level->course}}</option>
+                                    @endforeach
+                                    </select>
+                            </div>
+                            <!--div class="form-group">
                             <label form="specialties">Clase</label>
                                 <select name="class"  id="class" class="form-control "  >
                                     <option value="1">1</option>
@@ -51,10 +59,10 @@
                                     <option value="6">6</option>
                                     <option value="7">7</option>
                                 </select>
-                            </div>
+                            </div-->
                         </div>
-                        <div class="col-md-4">
-                        <label for="formFile" class="form-label">Documento</label>
+                        <div class="col-md-6">
+                        <label for="formFile" class="form-label">Documentoa</label>
                         <input class="form-control" type="file" name="file" id="file">
                         </div>
                         

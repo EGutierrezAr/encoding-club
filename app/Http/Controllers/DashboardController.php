@@ -18,8 +18,9 @@ class DashboardController extends Controller
      */
     public function index(ScheduleServiceInterface $scheduleService)
     {
+            //dd(auth()->user());
 
-            $studentId ='53';  
+            $studentId ='52';  
             //$studentId = $id;  
             $start_date = Carbon::today(); 
             $end_date = Carbon::today()->addDays(20);
@@ -68,6 +69,8 @@ class DashboardController extends Controller
                     $datesTime[] = Arr::add(['days' => $date->format('d-m-Y')], 'time', $datesAvailable['afternoon']);
                 }
             }         
+
+            //dd($datesTime);
             $student = User::students()->findOrFail($studentId);
             return view('dashboard',compact('datesTime','teacherNameDisplay' ,'student')); 
 

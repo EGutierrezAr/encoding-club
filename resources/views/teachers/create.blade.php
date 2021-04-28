@@ -16,14 +16,14 @@
                     @csrf
                     <div class="row">
                         <div class="col-md-4">
-                        <div class="form-group">
-                            <label form="specialties">Estatus</label>
-                            <select name="status"  id="status" class="form-control "  >
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1">Estatus</label>
+                                <select class="form-control selectpicker" data-style="btn btn-link" id="status"  name="status">
                                 <option value="1">Prueba</option>
                                 <option value="2">Activo</option>
                                 <option value="3">Inactivo</option>
-                            </select>
-                        </div>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-md-4">
                         <div class="form-group">
@@ -75,8 +75,8 @@
                         </div>
                         <div class="col-md-4">
                         <div class="form-group">
-                            <label form="specialties">Nivel</label>
-                            <select name="level"  id="level" class="form-control "  >
+                            <label for="exampleFormControlSelect1">Nivel</label>
+                            <select class="form-control selectpicker" data-style="btn btn-link" id="level" name="level">
                                 <option value="1">Básico</option>
                                 <option value="2">Medio</option>
                                 <option value="3">Avanzado</option>

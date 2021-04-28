@@ -17,9 +17,18 @@
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-4">
-                        <div class="form-group">
+                        <!--div class="form-group">
                             <label class="bmd-label-floating">Estatus</label>
                             <input type="text" name="status" value="{{ old('status', $teacher->status) }}"  class="form-control">
+                        </div-->
+                        <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Estatus</label>
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="status"  name="status">
+                                    <option value="1" @if( $teacher->status == 1) selected @endif>PRUEBA</option>
+                                    <option value="2" @if( $teacher->status == 2) selected @endif>ACTIVO</option>
+                                    <option value="3" @if( $teacher->status == 3) selected @endif>INACTIVO</option>
+                                    </select>
+                        </div>
                         </div>
                         </div>
                         <div class="col-md-4">
@@ -74,11 +83,10 @@
                     <div class="row">
                         <div class="col-md-12">
                         <div class="form-group">
-                            <label>Observaciones</label>
+                            <!--label>Observaciones</label-->
                             <div class="form-group">
-                            <label class="bmd-label-floating"> Observaciones relacionadas del alumno.</label>
-                            <textarea class="form-control" name="observation" value="{{ old('observation', $teacher->observation) }}"  rows="5"></textarea>
-                            <input type="text" name="observation" value="{{ old('observation', $teacher->observation) }}" class="form-control">
+                            <label class="bmd-label-floating"> Observaciones relacionadas del Profesor.</label>
+                            <textarea class="form-control" name="observation" value="{{ old('observation', $teacher->observation) }}"  rows="5">{{ $teacher->observation }}</textarea>
                             </div>
                         </div>
                         </div>

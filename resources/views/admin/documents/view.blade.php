@@ -18,40 +18,59 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Título</label>
-                                <input type="text" name="title" class="form-control">
+                                <input type="text" id="title" name="title"   class="form-control">
+        
                             </div>
                         </div>
                         <div class="col-md-8">
                             <div class="form-group">
                                 <label class="bmd-label-floating">Descripción</label>
-                                <input type="text" name="description" class="form-control">
+                                <input type="text" name="description" name="description"  class="form-control">
                             </div>
                         </div>       
                     </div>
                     <div class="row">
                         <div class="col-md-4">
+
                             <div class="form-group">
+                                    <label for="exampleFormControlSelect1">Nivel</label>
+                                    <select class="form-control selectpicker" data-style="btn btn-link" id="level" name="level" onchange="selectClassByLevel()">
+                                    @foreach($levels as $level)
+                                    <option value="{{ $level->id }}"@if($levelId != null) { @if($levelId == $level->id) selected @endif} @endif >{{ $level->level.' - '.$level->course}}</option>
+                                    @endforeach
+                                    </select>
+                            </div>
+
+                            <!--div class="form-group">
                             <label form="specialties">Módulo</label>
-                                <!--select name="module"  id="module" class="form-control "  -->
+                                <select name="module"  id="module" class="form-control ">
                                 <select class="form-control selectpicker" data-style="btn btn-link" id="module" name="module">
                                     <option value="1">Básico</option>
                                     <option value="2">Medio</option>
                                     <option value="3">Avanzado</option>
                                 </select>
-                            </div>
+                            </div-->
                         </div>
                         <div class="col-md-4">
                             <div class="form-group">
                             <label form="specialties">Clase</label>
                                 <select class="form-control selectpicker" data-style="btn btn-link"  id="class" name="class">
-                                <!--select name="class"  id="class" class="form-control "  -->
-                                    <option value="1">1</option>
+                                <!--select name="class"  id="class" class="form-control "-->
+                                    @if($lessons != null) {
+                                    @foreach($lessons as $lesson)
+                                    <option value="{{ $lesson->id }}" >{{ $lesson->lesson_number}}</option>
+                                    @endforeach}
+                                    @endif
+                                    <!--option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
                                     <option value="5">5</option>
                                     <option value="6">6</option>
                                     <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option-->
                                 </select>
                             </div>
                         </div>
@@ -82,6 +101,8 @@
                     <tr>
                         <th>Título</th>
                         <th>Descripción</th>
+                        <th>Level</th>
+                        <th>Clase</th>
                         <th>Ver</th>
                         <th>Download</th>
                     </tr>
@@ -91,6 +112,8 @@
                       <tr>
                         <td>{{$data->title}}</td>
                         <td>{{$data->description}}</td>
+                        <td>{{$data->level.' - '.$data->course}}</td>
+                        <td>{{$data->lesson_number}}</td>
                         <td><a href="/files/{{$data->id}}">Ver</a></td>
                         <td><a href="/files/download/{{$data->file}}">Download</a></td>
                       </tr>
@@ -104,7 +127,6 @@
     </div>
 </div>
 @endsection
-
 
 
 <!--

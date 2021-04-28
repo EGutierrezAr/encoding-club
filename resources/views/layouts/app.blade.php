@@ -32,6 +32,26 @@ The above copyright notice and this permission notice shall be included in all c
   <!--link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" /-->
   <link href="https://demos.creative-tim.com/test/material-dashboard-pro/assets/css/material-dashboard.min.css?v=2.0.3" rel="stylesheet">
 
+
+  <script type="text/jscript">
+ 
+  function changeMainMenu(){
+    var current = location.pathname;
+    $('#nav li a').each(function(){
+        var $this = $(this);
+        // if the current path is like this link, make it active
+        //alert("href "+$this.attr('href'));
+        //alert("current "+current);
+        /*if($this.attr('href').indexOf(current) != -1){*/
+        if(current.indexOf($this.attr('href')) != -1){ 
+          //alert("entre"); 
+            $this.parent().siblings().removeClass('active').end().addClass('active');
+            e.preventDefault();
+        }
+    })
+}
+</script>
+
   <script type="text/jscript">
   function disableContextMenu()
   {
@@ -46,7 +66,7 @@ The above copyright notice and this permission notice shall be included in all c
 
 <body class="">
   <div class="wrapper ">
-  <div class="sidebar" data-color="azure" data-background-color="white" data-image="{{ asset('img/sidebar-1.jpg') }}">
+  <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{ asset('img/sidebar-1.jpg') }}">
 
 
       <!--
@@ -58,20 +78,22 @@ The above copyright notice and this permission notice shall be included in all c
           Creative Tim
         </a></div>
       <div class="sidebar-wrapper">
-        <ul class="nav">
-          <li class="nav-item active  ">
+        <ul class="nav" id="nav">
+        @if (auth()->user()->role == 'admin')
+          <li class="nav-item" id="dashboard">
             <a class="nav-link" href="/dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="{{ url('students/'.Auth::user()->id.'/edit') }}">
+          <li class="nav-item"  id="person">
+            <!--a class="nav-link" href="{{ url('students/'.Auth::user()->id.'/edit') }}"-->
+            <a class="nav-link" href="/edit">
               <i class="material-icons">person</i>
               <p>Datos del Estudiante</p>
             </a>
           </li>
-          <li class="nav-item ">
+          <li class="nav-item" active>
             <a class="nav-link" href="/students">
               <i class="material-icons">content_paste</i>
               <p>Estudiantes</p>
@@ -96,18 +118,25 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
+            <a class="nav-link" href="/class">
               <i class="material-icons">location_ons</i>
-              <p>Maps</p>
+              <p>Clase</p>
             </a>
           </li>
           <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
+            <a class="nav-link" href="/task">
               <i class="material-icons">notifications</i>
-              <p>Notifications</p>
+              <p>Tareas</p>
             </a>
           </li>
-          <li class="nav-item ">
+        @elseif (auth()->user()->role == 'student')
+        @elseif (auth()->user()->role == 'teacher')
+        @elseif (auth()->user()->role == 'advisor')
+        @endif
+       
+
+
+          <!--li class="nav-item ">
             <a class="nav-link" href="./rtl.html">
               <i class="material-icons">language</i>
               <p>RTL Support</p>
@@ -118,7 +147,7 @@ The above copyright notice and this permission notice shall be included in all c
               <i class="material-icons">unarchive</i>
               <p>Upgrade to PRO</p>
             </a>
-          </li>
+          </li-->
         </ul>
       </div>
     </div>
@@ -930,7 +959,7 @@ The above copyright notice and this permission notice shall be included in all c
   <script>
     $(document).ready(function() {
 
-   
+    changeMainMenu();
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
 
