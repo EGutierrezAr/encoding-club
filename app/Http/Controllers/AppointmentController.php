@@ -38,7 +38,7 @@ class AppointmentController extends Controller
         $appointment->parent_phone = $request->input('parent_phone');
         $appointment->student_name = $request->input('student_name');
         $appointment->student_age = $request->input('student_age');
-        $appointment->status = 'reservada';
+        $appointment->status_appointment = 'reservada';
         $appointment->type = 'prueba';
         $appointment->save();
 

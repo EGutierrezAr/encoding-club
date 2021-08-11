@@ -21,15 +21,14 @@
                             <label class="bmd-label-floating">Estatus</label>
                             <input type="text" name="status" value="{{ old('status', $teacher->status) }}"  class="form-control">
                         </div-->
-                        <div class="form-group">
-                                    <label for="exampleFormControlSelect1">Estatus</label>
-                                    <select class="form-control selectpicker" data-style="btn btn-link" id="status"  name="status">
-                                    <option value="1" @if( $teacher->status == 1) selected @endif>PRUEBA</option>
-                                    <option value="2" @if( $teacher->status == 2) selected @endif>ACTIVO</option>
-                                    <option value="3" @if( $teacher->status == 3) selected @endif>INACTIVO</option>
-                                    </select>
-                        </div>
-                        </div>
+                            <div class="form-group">       
+                                <label for="exampleFormControlSelect1">Estatus</label>
+                                <select class="form-control selectpicker" data-style="btn btn-link" id="status"  name="status">
+                                <option value="1" @if( $teacher->status == 1) selected @endif>PRUEBA</option>
+                                <option value="2" @if( $teacher->status == 2) selected @endif>ACTIVO</option>
+                                <option value="3" @if( $teacher->status == 3) selected @endif>INACTIVO</option>
+                                </select>
+                            </div>
                         </div>
                         <div class="col-md-4">
                         <div class="form-group">
@@ -76,7 +75,11 @@
                         <div class="col-md-4">
                         <div class="form-group">
                             <label class="bmd-label-floating">Nivel</label>
-                            <input type="text" name="level" value="{{ old('level', $teacher->level) }}" class="form-control">
+                            <select class="form-control selectpicker" data-style="btn btn-link" id="level"  name="level">
+                                <option value="1" @if( $teacher->level == 1) selected @endif>BASICO</option>
+                                <option value="2" @if( $teacher->level == 2) selected @endif>MEDIO</option>
+                                <option value="3" @if( $teacher->level == 3) selected @endif>AVANZADO</option>
+                            </select>
                         </div>
                         </div>
                     </div>

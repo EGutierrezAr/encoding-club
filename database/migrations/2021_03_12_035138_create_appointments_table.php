@@ -32,8 +32,12 @@ class CreateAppointmentsTable extends Migration
             // fk teacher
             $table->unsignedInteger('teacher_id')->nullable();
             $table->foreign('teacher_id')->references('id')->on('users');
+
+            // fk Levels
+            $table->unsignedInteger('level_id')->nullable();
+            $table->foreign('level_id')->references('id')->on('levels');
             
-            $table->string('status')->nullable(); //reservada, planificada, atendida
+            $table->string('status_appointment')->nullable(); //reservada, planificada, atendida
             $table->string('type')->nullable();  //prueba, pagada
             $table->string('comments')->nullable();
             $table->timestamps();

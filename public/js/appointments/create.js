@@ -22,3 +22,7 @@
     window.location = `/files/${levelId}/indexLevel`;
 
   };
+
+  function selectClassesListByDay(dayNumber) {
+    window.location = `/calendar/${dayNumber}/todayClassList`;
+  };

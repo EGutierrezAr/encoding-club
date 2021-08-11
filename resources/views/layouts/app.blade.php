@@ -35,14 +35,16 @@ The above copyright notice and this permission notice shall be included in all c
 
   <script type="text/jscript">
  
+ 
   function changeMainMenu(){
+    
     var current = location.pathname;
     $('#nav li a').each(function(){
         var $this = $(this);
         // if the current path is like this link, make it active
         //alert("href "+$this.attr('href'));
         //alert("current "+current);
-        /*if($this.attr('href').indexOf(current) != -1){*/
+        //if($this.attr('href').indexOf(current) != -1){
         if(current.indexOf($this.attr('href')) != -1){ 
           //alert("entre"); 
             $this.parent().siblings().removeClass('active').end().addClass('active');
@@ -88,44 +90,50 @@ The above copyright notice and this permission notice shall be included in all c
           </li>
           <li class="nav-item"  id="person">
             <!--a class="nav-link" href="{{ url('students/'.Auth::user()->id.'/edit') }}"-->
-            <a class="nav-link" href="/edit">
+            <a class="nav-link" href="/data">
               <i class="material-icons">person</i>
               <p>Datos del Estudiante</p>
             </a>
           </li>
           <li class="nav-item" active>
             <a class="nav-link" href="/students">
-              <i class="material-icons">content_paste</i>
+              <i class="material-icons">people_alt</i>
               <p>Estudiantes</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="/teachers">
-              <i class="material-icons">library_books</i>
+              <i class="material-icons">people_outline</i>
               <p>Profesores</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="/schedule">
-              <i class="material-icons">library_books</i>
+              <i class="material-icons">date_range</i>
               <p>Profesores Horarios</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="/files">
-              <i class="material-icons">bubble_chart</i>
+              <i class="material-icons">library_books</i>
               <p>Adminitrador de Archivos</p>
             </a>
           </li>
           <li class="nav-item ">
             <a class="nav-link" href="/class">
-              <i class="material-icons">location_ons</i>
+              <i class="material-icons">auto_stories</i>
               <p>Clase</p>
             </a>
           </li>
           <li class="nav-item ">
+            <a class="nav-link" href="/calendar/1/todayClassList">
+              <i class="material-icons">auto_stories</i>
+              <p>Calendar</p>
+            </a>
+          </li>
+          <li class="nav-item ">
             <a class="nav-link" href="/task">
-              <i class="material-icons">notifications</i>
+              <i class="material-icons">precision_manufacturing</i>
               <p>Tareas</p>
             </a>
           </li>
@@ -958,11 +966,9 @@ The above copyright notice and this permission notice shall be included in all c
   </script>
   <script>
     $(document).ready(function() {
-
-    changeMainMenu();
       // Javascript method's body can be found in assets/js/demos.js
       md.initDashboardPageCharts();
-
+      changeMainMenu();
     });
   </script>
 </body>

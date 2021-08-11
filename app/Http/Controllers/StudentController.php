@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Hash;
 
 use Carbon\Carbon;
 
+use App\Exports\StudentsExport;
+
 class StudentController extends Controller
 {
     private $days = [
@@ -51,7 +53,7 @@ class StudentController extends Controller
      */
     public function create()
     {
-        //dd("entreS");
+       
         $levels = Level::all();
 
         //dd($levels);
@@ -122,7 +124,7 @@ class StudentController extends Controller
                 'parent_email'=> $request->input('email')
             ], [
             'student_id' => $user->id,
-            'type' => 'prueba'
+            'type' => 'Prueba'
             ]
         );
 
@@ -419,6 +421,7 @@ class StudentController extends Controller
                 ]
             );
         } else {
+           
             $appoitment = Appointment::where('student_id',$userId)->get();
 
             appointment::create(
@@ -432,7 +435,7 @@ class StudentController extends Controller
                     'date' => $date->format('Y-m-d'),
                     'time_start' => $timeStart,
                     'time_end' => $timeEnd,
-                    'status' => 'reservada',
+                    'status_appointment' => 'Reservada',
                     'type' => 'pagada'
                 ]
             );
@@ -517,11 +520,6 @@ class StudentController extends Controller
                     }*/
                 }
 
-                
-                
-   
-               
-                
                 //$teachers[] = Arr::add(['days' => $date->format('d-m-Y')], 'time', 'nada');    
                               /*
                 //$dates[] = $date->format('d-m-Y');
@@ -530,7 +528,6 @@ class StudentController extends Controller
                 $datesTime[] = Arr::add(['days' => $date->format('d-m-Y')], 'time', $datesAvailable['morning']);
                 //$datesTime2[] = Arr::add($datesTime , 'teachers', $teachers);
                 */
-
 
                 $datesTime[] = Arr::add(['days' => $date->format('d-m-Y')], 'time', $datesAvailable['morning']); 
 
@@ -553,4 +550,30 @@ class StudentController extends Controller
         return view('students.addTeacher',compact('datesTime','teacherNameDisplay' , 'teachers','student')); 
     	
     }
+
+
+    public function listAsigDate()
+    {
+        $students = User::join('appointments', 'users.email', '=', 'appointments.parent_email')
+        ->where('appointments.date','=', null)
+        ->select('users.*')->paginate(5); 
+        
+        return view('students.index',compact('students'));
+    	
+    }
+
+    public function listAsigTeacher()
+    {
+        $students = User::join('appointments', 'users.email', '=', 'appointments.parent_email')
+        ->where('appointments.date','!=', null)
+        ->where('appointments.teacher_id','=', null)
+        ->select('users.*')->paginate(5); 
+        return view('students.index',compact('students'));
+    	
+    }
+
+    public function export() 
+    {
+        return Excel::download(new StudentsExport, 'Students.xlsx');
+    } 
 }

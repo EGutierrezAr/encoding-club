@@ -18,7 +18,7 @@ class TaskController extends Controller
     public function index()
     {
         $nextClass=null;
-        $student = User::students()->where ('id',52)->get()->first();
+        $student = User::students()->where ('id',61)->get()->first();
 
         $noActualLevel = $student->level;
 
@@ -28,7 +28,7 @@ class TaskController extends Controller
         $lessons = Lessons::where('level_id',$noActualLevel)->get();  
 
         for ($i=count($lessons); $i >= 1; --$i){
-            $classes = Classes::where('student_id',52)
+            $classes = Classes::where('student_id',61)
             ->where('level_id',$noActualLevel )
             ->where('lesson_id',$i)
             ->get()->first();  
@@ -37,7 +37,7 @@ class TaskController extends Controller
             }
         }
 
-        $classes = Classes::where('student_id',52)
+        $classes = Classes::where('student_id',61)
         ->where('level_id',$noActualLevel )
         ->get();  
         //dd($classes);
@@ -145,7 +145,7 @@ class TaskController extends Controller
 
        // dd($file);
 
-       $student = User::students()->where ('id',52)->get()->first();
+       $student = User::students()->where ('id',61)->get()->first();
        $level = Level::where('id',$student->level)->get()->first();
        $lessons = Lessons::where('file_homework',$file)->get()->first();  
 

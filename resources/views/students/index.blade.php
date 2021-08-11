@@ -42,23 +42,38 @@
                     <span class="navbar-text">
                     <a href="{{ url('students/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
                     </span>
+                    <span class="navbar-text">
+                    &nbsp;
+                    </span>
+                    <span class="navbar-text">
+                    <a href="{{ url('students/listAsigDate') }}" class="btn btn-sm btn-secondary">X Asignar Fecha</a>
+                    </span>
+                    <span class="navbar-text">
+                    &nbsp;
+                    </span>
+                    <span class="navbar-text">
+                    <a href="{{ url('students/listAsigTeacher') }}" class="btn btn-sm btn-secondary">X Asignar Profesor</a>
+                    </span>
+                    &nbsp;
+                      </span>
+                      <span class="navbar-text">
+                      <a href="{{ url('students/export') }}" class="btn btn-sm btn-secondary">Exportar</a>
+                      </span>
 
-                      <div class="collapse navbar-collapse">
-                          <form class="form-inline ml-auto" action="{{ route('student/find') }}" method="GET">
-                          @csrf()
-                          @method('find')
-                              <div class="form-group no-border">
-                                <input type="text" id="search" name="search"  class="form-control" placeholder="Search">
-                              </div>
-                              <button type="submit" class="btn btn-just-icon btn-round">
-                                <i class="material-icons">search</i>
-                              </button>
-                          </form>
+                    <div class="collapse navbar-collapse">
+                        <form class="form-inline ml-auto" action="{{ route('student/find') }}" method="GET">
+                        @csrf()
+                        @method('find')
+                            <div class="form-group no-border">
+                              <input type="text" id="search" name="search"  class="form-control" placeholder="Search">
+                            </div>
+                            <button type="submit" class="btn btn-just-icon btn-round">
+                              <i class="material-icons">search</i>
+                            </button>
+                        </form>
                       </div>
                   </div>
-              </nav>
-
-
+                </nav>
 
               <div class="card-body">
                 @if(session('notification'))

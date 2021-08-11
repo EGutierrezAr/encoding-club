@@ -6,12 +6,6 @@
         <div class="row">
           <div class="col-md-12">
             <div class="card">
-                 <!--div class="card-header card-header-primary">
-                  <h4 class="card-title ">Profesores </h4>
-                  <p class="card-category"> Lista de todos los profersores</p>
-                  <div class="col text-right">
-                  <a href="{{ url('teachers/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
-                </div--> 
                 <nav class="navbar navbar-expand-lg bg-primary">
                   <div class="container">
                       <span class="navbar-text">
@@ -19,12 +13,6 @@
                       </span>
                       <span class="navbar-text">
                       <a href="{{ url('teachers/create') }}" class="btn btn-sm btn-secondary">Nuevo</a>
-                      </span>
-                      <span class="navbar-text">
-                      &nbsp;
-                      </span>
-                      <span class="navbar-text">
-                      <a href="{{ url('teachers/export') }}" class="btn btn-sm btn-secondary">Exportar</a>
                       </span>
                     
                         <div class="collapse navbar-collapse">
@@ -59,47 +47,56 @@
                         ID
                       </th>
                       <th>
-                        Nombre
+                        Estudiante
                       </th>
                       <th>
-                        Correo
+                        Día
+                      </th>
+                      <th>
+                        Hora
+                      </th>
+                      <th>
+                        Tipo
                       </th>
                       <th>
                         Nivel
                       </th>
                       <th>
-                        Opciones
+                        Estatus
                       </th>
                     </thead>
                     <tbody>
-                      @foreach ($teachers as $teacher)
+                      @foreach ($appointments as $appointment)
                       <tr>
                         <td>
                           1
                         </td>
                         <td>
-                          {{ $teacher->name }}
+                          {{ $appointment->name.' '.$appointment->last_name}}
                         </td>
                         <td>
-                          {{ $teacher->email }}
+                          {{ $appointment->date }}
                         </td>
                         <td>
-                          {{ $teacher->level }}
+                          {{ $appointment->time_start }}
                         </td>
                         <td>
-                          
-                          <form action="{{ url('teachers/'.$teacher->id) }}" method="POST">
-                          @csrf()
-                          @method('DELETE')
-
-                          <a href="{{ url('teachers/'.$teacher->id.'/edit') }}" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons"  title="Editar" >edit</i></a>
-                          <a href="{{ url('teachers/'.$teacher->id.'/listClass') }}" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons"  title="Historial" >pending_actions</i></a>
-                            
-                          <button type="submit" rel="tooltip" title="Eliminar" class="btn btn-primary btn-link btn-sm">
-                            <i class="material-icons">close</i>
-                          </form>
+                          {{ $appointment->type }}
+                        </td>
+                        <td>
+                        @if ($appointment->level == 1)
+                         Básico
+                        @elseif ($appointment->level == 2)
+                         Medio
+                         @elseif ($appointment->level == 3)
+                         Avanzado
+                        @endif
+                        </td>
+                        <td>
+                          {{ $appointment->status_appointment }}
+                        </td>
+                        <td>
+                      
                         </td>
                       </tr>
                       @endforeach
@@ -107,7 +104,7 @@
                   </table>
                 </div>
                 <div class="card-body">
-                {{ $teachers->links() }}
+                {{ $appointments->links() }}
                 </div>
               </div>
             </div>

@@ -1,0 +1,141 @@
+
+
+
+/*-----------Price Plans------------*/
+#price
+{
+
+	/*background-image: linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.8)),url(img/city3.jpg);*/
+	background-size: cover;
+	background-position: center;;
+	/*color: #efefef !important;*/
+	background-attachment: fixed;
+	padding: 10px 0; /*-mio-*/
+	/*padding-top: 50px;*/
+	padding-bottom: 50px;
+
+}
+
+#price h1
+{
+	text-align: center;
+	color: #707070 !important;
+	padding-bottom: 10px;
+}
+#price h1::after
+{
+	content: '';
+	background-color: #707070;
+	display: block;
+	height: 3px;
+	width: 170px;
+	margin: 20px auto 5px;
+}
+.price
+{
+	margin-top: 40px;
+}
+
+.icon
+{
+	font-size: 40px;
+	margin: 20px auto;
+	padding: 20px;
+	height: 80px;
+	width: 80px;
+	border:	1px solid #fff;
+	border-radius: 50%;
+}
+
+.single-price
+{
+	 margin: 10px auto;
+	 display: inline;
+	 float: left;
+	 width: 100%;
+	 background-color: #fff;
+	 transition: 0.5s; 
+}
+.single-price:hover
+{
+	box-shadow: 0 2px 20px #333;
+
+}
+.price-head
+{
+	background-color: #2196f3;
+	display: inline;
+	float: left;
+	padding: 10px 5px;
+	text-align: center;
+	width: 100%;
+}
+.price-head h2
+{
+	color: #fff;
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	padding: 5px;
+	/*text-transform: uppercase;*/
+}
+.price-head h3
+{
+	color: #fff;
+	font-size: 12px;
+	/*font-weight: bold;*/
+	margin-bottom: 5px;
+	padding: 5px;
+
+}
+.price-head p
+{
+	font-size: 25px;
+	color: #ccc;
+	font-weight: bold;
+	line-height: 30px;
+}
+#price span
+{
+	font-size: 15px;
+}
+.price-content
+{
+	display: inline;
+	float: left;
+	width: 100%; 
+	padding: 0 15px;
+	text-align: left;
+}
+.price-content li
+{
+	border-bottom: 1x solid #efefef;
+	padding: 15px 10px;
+	list-style: none;
+	text-align: left;
+}
+ul li:last-child
+{
+	border: none; 
+}
+.fa-check-circle
+{
+	color: green;
+	margin-right: 10px;
+	font-size: 20px;
+}
+.fa-times-circle
+{
+	color: red;
+	margin-right: 10px;
+	font-size: 20px;
+}
+.price-button
+{
+	display: inline;
+	float: left;
+	padding: 15px 15px 30px;
+	text-align: center;
+	width: 100%
+}
+

@@ -28,6 +28,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/user_profile', 'HomeController@index')->name('user_profile');
 
 //Studens
+Route::get('students/listAsigDate', 'StudentController@listAsigDate');
+Route::get('students/listAsigTeacher', 'StudentController@listAsigTeacher');
+Route::get('students/export', 'TeacherController@export');
 Route::resource('students', 'StudentController');
 
 Route::get('student/find', 'StudentController@find')->name('student/find');
@@ -36,18 +39,24 @@ Route::post('students/{id}/schedule', 'StudentController@storeSchedule');
 //Route::post('students/{id}/schedule', 'StudentController@storeSchedule');
 Route::get('students/{id}/appointment', 'StudentController@appointment');
 Route::get('students/{id}/{teacherid}/{date}/{time}/assingTeacher', 'StudentController@assingTeacher');
-//Route::get('students/search', 'StudentController@search')->name('students/search');
+
+
+
 
 
 Route::get('edit', 'StudentController@edit');
+Route::get('data', 'StudentController@edit');
 
 
 // Dashboard
 Route::resource('dashboard', 'DashboardController');
 
 // Techers
+Route::get('teachers/export', 'TeacherController@export');
 Route::get('teachers/find', 'TeacherController@find')->name('teachers/find');
+Route::get('teachers/{id}/listClass', 'TeacherController@listClass');
 Route::resource('teachers', 'TeacherController');
+
 
 
 // Advisor
@@ -68,6 +77,7 @@ Route::post('/schedule', 'ScheduleController@store');
 // Class
 Route::resource('class', 'ClassController');
 Route::post('class', 'ClassController@store');
+Route::get('calendar/{dayNumber}/todayClassList', 'ClassController@todayClassList');
 
 // Task
 Route::resource('task', 'TaskController');

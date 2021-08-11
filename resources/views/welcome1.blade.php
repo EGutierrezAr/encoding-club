@@ -34,6 +34,7 @@
   <!-- CSS Files -->
   <link href="./assetsidx/css/bootstrap.min.css" rel="stylesheet" />
   <link href="./assetsidx/css/now-ui-kit.css?v=1.3.0" rel="stylesheet" />
+  <link href="./assetsidx/css/style.css" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="./assetsidx/demo/demo.css" rel="stylesheet" />
 </head>
@@ -386,34 +387,37 @@
       </div>
     </div>
 
+    <div class="main">  
+        <div class="container">
+              <div class="hero-images-container">
+                <img src="img/path.png" alt="">
+              </div>
+        </div>
+    </div>
+
     <!-- Container Tabs --> 
     <div class="section section-plain" >
       <div class="container">
         <div class="row">
           <div class="col-md-10 ml-auto col-xl-12 mr-auto">
-            <p class="category">Plan de Estudios</p>
+            <p class="category">Plan de Estudios (Programa Gamer)</p>
             <!-- Nav tabs -->
             <div class="card">
               <div class="card-header">
                 <ul class="nav nav-tabs justify-content-center" role="tablist">
                   <li class="nav-item">
                     <a class="nav-link active" data-toggle="tab" href="#basico" role="tab">
-                      <i class="now-ui-icons objects_umbrella-13"></i> Básico
+                      <i class="now-ui-icons objects_umbrella-13"></i> Plan Básico
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#medio" role="tab">
-                      <i class="now-ui-icons shopping_cart-simple"></i> Medio
+                      <i class="now-ui-icons shopping_cart-simple"></i> Plan Intermedio
                     </a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#avanzado" role="tab">
-                      <i class="now-ui-icons shopping_shop"></i> Avanzado
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#profesional" role="tab">
-                      <i class="now-ui-icons ui-2_settings-90"></i> Profesional
+                      <i class="now-ui-icons shopping_shop"></i> Plan Avanzado
                     </a>
                   </li>
                 </ul>
@@ -422,18 +426,94 @@
                 <!-- Tab panes -->
                 <div class="tab-content text-center">
                   <div class="tab-pane active" id="basico" role="tabpanel">
-                    <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
+                  <div class="container">
+                  <div class="row price">
+                    <div class="col-4">
+                      <div class="single-price">
+                          <div class="price-head">
+                              <h2>Básico 1</h2>
+                              <h3>1 mes - 8 Clases</h2>
+                          </div>
+                          <h4>El curriculo  incluye</h4>
+
+                          
+
+                         
+                          <p>Secuencia, Bloques de Codificación fundamentales, Bucles</p>
+                          
+                          <div class="alert alert-info" role="alert">
+                            <div class="container">
+                              <div class="alert-icon">
+                                <i class="now-ui-icons ui-2_like"></i>
+                              </div>
+                              <strong>Logros del primer mes!</strong> 
+                            </div>
+                          </div>
+
+                        
+
+                          <ul class="nav nav-pills nav-pills-primary nav-pills-just-icons" role="tablist">
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#active" role="tablist">
+                    <i class="far fa-gem"></i>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" data-toggle="tab" href="#link" role="tablist">
+                    <i class="fa fa-suitcase"></i>
+                  </a>
+                </li>
+                
+              </ul>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="single-price">
+                          <div class="price-head">
+                              <h2>Básico 2</h2>
+                              <h3>1 mes - 8 Clases</h2>
+                          </div>
+                          <div class="price-content">
+                                  <li>Variables II</li>
+                                  <li>Ciclo FOR II</li>
+                                  <li>Constant II</esli>
+                                  <li>Ciclo While II</li>
+                                  <li>Ciclo DO WHILE II</li>
+                          </div>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="single-price">
+                          <div class="price-head">
+                              <h2>Básico 3</h2>
+                              <h3>1 mes - 8 Clases</h2>
+                          </div>
+                          <div class="price-content">
+                                  <li>Variables III</li>
+                                  <li>Ciclo FOR III</li>
+                                  <li>Constant III</esli>
+                                  <li>Ciclo While III</li>
+                                  <li>Ciclo DO WHILE III</li>
+                                  <hr>
+                                  <li>Variables III</li>
+                                  <li>Ciclo FOR III</li>
+                                  <li>Constant III</esli>
+                                  <li>Ciclo While III</li>
+                                  <li>Ciclo DO WHILE III</li>
+                          </div>
+                      </div>
+                    </div>
+                  
+                 
+
+                  </div>
+                  </div>
                   </div>
                   <div class="tab-pane" id="medio" role="tabpanel">
                     <p> I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. </p>
                   </div>
                   <div class="tab-pane" id="avanzado" role="tabpanel">
                     <p>I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at. So when you get something that has the name Kanye West on it, it’s supposed to be pushing the furthest possibilities. I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus.</p>
-                  </div>
-                  <div class="tab-pane" id="profesional" role="tabpanel">
-                    <p>
-                      "I will be the leader of a company that ends up being worth billions of dollars, because I got the answers. I understand culture. I am the nucleus. I think that’s a responsibility that I have, to push possibilities, to show people, this is the level that things could be at."
-                    </p>
                   </div>
                 </div>
               </div>

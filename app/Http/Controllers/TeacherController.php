@@ -4,8 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Appointment;
 use Illuminate\Support\Arr; 
 use Illuminate\Support\Facades\Hash;
+
+use CArbon\Carbon;
+
+use App\Exports\TeachersExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TeacherController extends Controller
 {
@@ -71,7 +77,7 @@ class TeacherController extends Controller
      */
     public function store(Request $request)
     {
-       // dd($request);
+       
         $this->performValidation($request);
 
         User::create(
@@ -118,6 +124,7 @@ class TeacherController extends Controller
      */
     public function update(Request $request, $id)
     {
+        //dd($request);
         $rules = [
             'name' => 'required|min:3',
             /*'last_name' => 'nullable|min:3',
@@ -156,4 +163,37 @@ class TeacherController extends Controller
         $notification = "El profesor $deleteTeacher se ha eliminado correctamente.";
         return redirect('/teachers')->with(compact('notification'));
     }
+
+    public function listClass($teacherId)
+    {   
+        
+        $now  = Carbon::today();
+
+        $appointments = Appointment::join('users', 'appointments.student_id', '=', 'users.id')
+        ->whereMonth('date', $now->month)
+        ->where('teacher_id',$teacherId)->paginate(5); 
+        //->get();
+        
+
+        /*
+        $appointments = Appointment::rightJoin('users', 'appointments.teacher_id', '=', 'users.id')
+        ->where('role', '=', 'teacher')
+        ->select('users.name','users.last_name','users.email','users.phone',
+                 \DB::raw('(CASE WHEN users.level ="1" THEN "BASICO" WHEN users.level = "2" THEN "MEDIO" ELSE "AVANZADO" END) as level'),
+                 'appointments.student_name','appointments.parent_name','appointments.parent_phone',
+                 'appointments.date','appointments.time_start',
+                 'appointments.type','appointments.status_appointment')
+        ->paginate(100);
+
+
+        dd($appointments);*/
+
+        return view('teachers.classes',compact('appointments'));
+    }
+
+    
+    public function export() 
+    {
+        return Excel::download(new TeachersExport, 'Teachers.xlsx');
+    } 
 }
